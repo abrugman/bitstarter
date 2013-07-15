@@ -96,7 +96,16 @@ if(require.main == module) {
 	var checkJson = checkHtmlFile(program.file, program.checks);
     }
     if (program.url) {
-	var checkJson = checkUrl(program.url, program.checks);
+	rest.get(program.url).on('complete', function(result) {
+	if (result instanceof Error) {
+	    sys.puts('error: ' + result.message);
+	    this.retry(5000);
+	} else {
+	    // sys.puts(result);
+	    var chekJson = checkUrl(result, program.checks);
+	}
+	});
+	// var checkJson = checkUrl(program.url, program.checks);
     } 	
     var outJson = JSON.stringify(checkJson, null, 4);
     console.log(outJson);

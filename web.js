@@ -11,10 +11,7 @@ app.get('/', function(request, response) {
 });
 
 var port = process.env.PORT || 8080;
-<<<<<<< HEAD
 /* var port = process.env.PORT || 5000;*/
-=======
->>>>>>> af5c3339e1110feff9d35b53420a62eb18de8f05
 app.listen(port, function() {
   console.log("Listening on " + port);
 });

@@ -18,18 +18,37 @@ app.get('/', function(request, response) {
 
 /* Page 2 */
 
-var about_html = "about.html";
-app.get('/about', function(req, res){
-   res.send(fs.readFileSync(about_html).toString());
-});
-
-
-/* Page 3 */
-
 var start_html = "start.html";
 app.get('/start', function(req, res){
    res.send(fs.readFileSync(start_html).toString());
 });
+
+
+
+/* Example chart svg */
+
+var chart = "yes.svg";
+app.get('/yes', function(req, res){
+   res.send(fs.readFileSync(chart).toString());
+});
+
+
+/* EvEbitda Chart */
+
+var evebitda = "EvEb.html";
+app.get('/eve', function(req, res){
+   res.send(fs.readFileSync(evebitda).toString());
+});
+
+
+/* EvEbitda Chart Data */
+
+var dataevebitda = "EvEbitdaVarios.txt";
+app.get('/dataeve', function(req, res){
+   res.send(fs.readFileSync(dataevebitda).toString());
+});
+
+
 
 
 /* Continue */

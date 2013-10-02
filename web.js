@@ -49,6 +49,21 @@ app.get('/dataeve', function(req, res){
 });
 
 
+/* pbv Chart */
+
+var pbvk = "pbv.html";
+app.get('/pbvg', function(req, res){
+   res.send(fs.readFileSync(pbvk).toString());
+});
+
+
+/* pbv Chart Data */
+
+var datapbv = "pbv3.json";
+app.get('/datapbvg', function(req, res){
+   res.send(fs.readFileSync(datapbv).toString());
+});
+
 
 
 /* Continue */

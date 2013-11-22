@@ -154,6 +154,17 @@
       border: 0px;
       }
 
+      .exam {
+      position: fixed;
+      top: 60%;
+      left: 10%;
+      margin-left: -100px;
+      margin-top: -20px;
+      height: 300px;
+      width: 550px;
+      border: 0px;
+      }
+
 
 
     </style>
@@ -188,15 +199,15 @@
 
     <!-- CODE GOES HERE -->
 
-
+    <form action="/datapbvg">
     <div class="row-fluid heading">
 	    <div class="input-append">
-	      <input class="span12" id="appendedInputButton" type="text" placeholder="Insert Ticker">
-	      <button class="btn" type="button">Go</button>
+	      <input name="q" class="span12" id="appendedInputButton" type="text/javascript" placeholder="Insert Ticker">
+	      <button class="btn" type="submit">Go</button>
 	    </div>
 	  </div>
     </div>
-
+    </form>
 
 
 <!-- building blocks chart svg type -->
@@ -212,6 +223,9 @@
 
 <iframe class="pbvbi" id="extFrame" src="/pbvg" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 
+<!-- TABLE PET EN FORMATO JSON -->
+
+<iframe class="exam" id="extFrame" src="/exa" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 
 
 

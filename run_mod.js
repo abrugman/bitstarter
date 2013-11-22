@@ -5,9 +5,9 @@ module.exports = function (tick) {
 
 	var mysql      = require('mysql');
 	var connection = mysql.createConnection({
-	    host     : 'stockety-db-west.c1k1sjidqusd.us-west-2.rds.amazonaws.com',
-	    user     : 'bogota1913',
-	    password : 'medellin1922',
+	    host     : '',
+	    user     : '',
+	    password : '',
 	    database : 'sto',
 	    port : '3306',
 	    //  debug : true,  

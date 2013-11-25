@@ -1,10 +1,10 @@
 var express = require('express');
 var fs = require('fs');
-
-
-
-var htmlfile = "index.html";
 var app = express.createServer(express.logger());
+var htmlfile = "index.html";
+
+
+
 app.get('/', function(request, response) {
     var prueba = fs.readFileSync(htmlfile).toString();
     response.send(prueba);
@@ -51,20 +51,14 @@ app.get('/dataeve', function(req, res){
 
 /* pbv Chart Data como pbv3.json */
 
-var datapbv = "pbv3.json";
-app.get('/datapbvg', function(req, res){
-//    res.send(fs.readFileSync(datapbv).toString());
-    var ticker = req.query.q;    // guarda el ticker KO
-    var run_mod = require('./run_mod.js');  // ejecuta la funcion run_mod que llama el stored procedure en MySQL con el parametro ticker = KO
-    var body = run_mod(ticker);
-    res.send(body);
-
-// falta responder el json que resulta del query a MySQL en el browser
-
-//    res.set('Content-Type','application/json');
-//    res.send(new Buffer (body));
-//    res.json(body);
-
+var datapbv = './data/pbv.json';
+app.get('/datapbvg', function(req, res) {
+    var ticker = req.query.q;    // guarda el ticker
+    var run_mod = require('./run_mod.js');  // ejecuta la funcion run_mod con el parametro ticker = KO
+    run_mod(ticker, function(data) {
+	console.log('contendio de data es: ' + data);
+	res.send(data);
+    });
 });
 
 
@@ -75,21 +69,6 @@ var pbvk = "pbv.html";
 app.get('/pbvg', function(req, res){
    res.send(fs.readFileSync(pbvk).toString());
 });
-
-
-
-
-
-
-
-/* PET TABLE EN FORMATO JSON*/
-
-var exampl = "ex.js";
-app.get('/exa', function(req, res){
-   res.send(exampl);
-});
-
-
 
 
 

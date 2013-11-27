@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Stockety</title>
+    <meta name ="viewport" content ="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css"> 
+    <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
+    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
+    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800"
+	  rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+
+  </head>
+  <body>
+
+
+    <!-- http://twitter.github.io/bootstrap/examples/starter-template.html -->
+    <!-- MAIN NAVEGATION BAR -->
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+	<div class="container">
+	  <button type="button" class="btn btn-navbar">
+	          data-toggle="collapse" data-target=".nav-collapse">
+	     <span class="icon-bar"></span>
+	     <span class="icon-bar"></span>
+	     <span class="icon-bar"></span>
+	  </button>
+	  <a class="brand" href="/">Stockety</a>
+	  <div class="nav-collapse collapse">
+	    <ul class="nav">
+	      <li><a href="/start">Start</a></li>
+	    </ul>
+	  </div><!--/.nav-collapse -->
+	</div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <!-- CODE GOES HERE -->
+
+    <form action="/dataquery">
+    <div class="row-fluid heading">
+	    <div class="input-append">
+	      <input name="q" class="span12" id="appendedInputButton" type="text/javascript" placeholder="Insert Ticker">
+	      <button class="btn" type="submit">Go</button>
+	    </div>
+	  </div>
+    </div>
+    </form>
+
+
+
+<!-- building blocks chart svg type -->
+
+<!-- <object type="image/svg+xml" class="building" style="float:right" data="/yes"> </object> -->
+
+<!-- evebitda chart html d3 type -->
+
+<!-- <iframe class="evebi" id="extFrame" src="/eve" marginwidth="0" marginheight="0" scrolling="no"></iframe> -->
+
+
+
+<!-- pbv chart html d3 type -->
+
+<iframe class="building" id="extFrame" src="/pbvg" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+<iframe class="evebi" id="extFrame" src="/pbvg" marginwidth="0" marginheight="0" scrolling="no"></iframe> 
+
+<iframe class="exam" id="extFrame" src="/pbvg" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+<iframe class="pbvbi" id="extFrame" src="/pbvg" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+
+
+
+
+
+
+
+    <!-- Not crucial -->
+    <div class="pie-pagina">
+    <div class="row-fluid footer">
+      <div class="span12">
+	<p>This work is licensed under
+	  the <a ref="http://creativecommons.org/licenses/by-sa/3.0/">CC
+	    By-SA 3.0</a></p>
+      </div>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

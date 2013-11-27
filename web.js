@@ -3,6 +3,8 @@ var fs = require('fs');
 var app = express.createServer(express.logger());
 
 
+// Include the router middleware from express web app development page 58
+app.use(app.router); 
 
 
 // var htmlfile = "index.html";
@@ -52,27 +54,38 @@ app.get('/dataeve', function(req, res){
 });
 
 
-/* Processes httpgetrequest on ticker and stores result on file ./data/pbv.json by calling run_mod module */
+/* Processes httpgetrequest on ticker and stores result on file ./data/pbv.json by calling run_mod module
+and also loads visualization by sending in a response the file that contains visualization program */
+var pbvk = "pbv.html";
+app.get('/dataquery', 
+	function(req, res, next) {
+	    var ticker = req.query.q;    // guarda el ticker
+	    var run_mod = require('./run_mod.js');  // ejecuta la funcion run_mod con el parametro ticker = KO
+	    run_mod(ticker, function(data) {
+		console.log('contendio de data es: ' + data);
+		next();
+	    });
 
-app.get('/dataquery', function(req, res, next) {
-    var ticker = req.query.q;    // guarda el ticker
-    var run_mod = require('./run_mod.js');  // ejecuta la funcion run_mod con el parametro ticker = KO
-    run_mod(ticker, function(data) {
-	console.log('contendio de data es: ' + data);
-//	res.send(data);
-	next();
-    });
-
-});
+	},
 
 /* Middleware: serves new file pbv.html which loads d3 visualization 
    with pbv information in json format from newly created file pbv.json*/
 
-var pbvk = "pbv.html";
+	function(req, res, next) {
+	    console.log ('imprimio prueba!!!!!!!!!!!!!!!!!!!!!!!!!!');
+	    res.send(fs.readFileSync(pbvk).toString()); // NO SERIA MEJOR HACER UN REDIRECT A /pbvg no carga la primera vez en chrome con el request, solo con un reload...
+	});
+
+
+/* Middleware: serves new file pbv.html which loads d3 visualization 
+   with pbv information in json format from newly created file pbv.json
 app.get('/dataquery', function(req, res, next) {
     console.log ('imprimio prueba!!!!!!!!!!!!!!!!!!!!!!!!!!');
     res.send(fs.readFileSync(pbvk).toString()); // NO SERIA MEJOR HACER UN REDIRECT A /pbvg porque no esta cargando la primera vez en chrome con el request, solo con un reload...
-});
+});*/
+
+
+
 
 /* serves ./data/pbv.json file that is requested in pbv.html graph */ 
 

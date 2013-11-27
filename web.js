@@ -6,6 +6,9 @@ var app = express.createServer(express.logger());
 // Include the router middleware from express web app development page 58
 app.use(app.router); 
 
+// Mark the public dir as a static dir
+app.use(express.static('./public'));
+
 
 // var htmlfile = "index.html";
 var htmlfile = "start.html";
@@ -56,7 +59,7 @@ app.get('/dataeve', function(req, res){
 
 /* Processes httpgetrequest on ticker and stores result on file ./data/pbv.json by calling run_mod module
 and also loads visualization by sending in a response the file that contains visualization program */
-var pbvk = "pbv.html";
+var pbvk = "display.html";
 app.get('/dataquery', 
 	function(req, res, next) {
 	    var ticker = req.query.q;    // guarda el ticker
@@ -87,7 +90,7 @@ app.get('/dataquery', function(req, res, next) {
 
 
 
-/* serves ./data/pbv.json file that is requested in pbv.html graph */ 
+/* serves ./data/pbv.json file that is requested in pbv.html iframe en display.html */ 
 
 var datapbv = "./data/pbv.json";
 app.get('/datapbv', function(req, res, next){
@@ -95,10 +98,10 @@ app.get('/datapbv', function(req, res, next){
 });
 
 
-
-//app.get('/pbvg', function(req, res, next){
-//    res.send(fs.readFileSync(pbvk).toString());
-//});
+var pbvka = "pbv.html";
+app.get('/pbvg', function(req, res, next){
+    res.send(fs.readFileSync(pbvka).toString());
+});
 
 
 

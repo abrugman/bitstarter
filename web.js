@@ -36,7 +36,7 @@ app.get('/start', function(req, res){
 
 /* Example chart svg */
 
-var chart = "yes.svg";
+var chart = "./public/images/yes.svg";
 app.get('/yes', function(req, res){
    res.send(fs.readFileSync(chart).toString());
 });

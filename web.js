@@ -8,10 +8,11 @@ app.use(app.router);
 
 // Mark the public dir as a static dir
 app.use(express.static('./public'));
-
+app.use(express.static('./data'));
+console.log('Los directorios public y data se han vuelto publicos.'); 
 
 // var htmlfile = "index.html";
-var htmlfile = "start.html";
+var htmlfile = "index.html";
 app.get('/', function(request, response) {
     var prueba = fs.readFileSync(htmlfile).toString();
     response.send(prueba);
@@ -26,7 +27,7 @@ app.get('/', function(request, response) {
 /* Page 2 */
 
 // var start_html = "start.html";
-var start_html = "index.html";
+var start_html = "start.html";
 app.get('/start', function(req, res){
    res.send(fs.readFileSync(start_html).toString());
 });
@@ -41,20 +42,7 @@ app.get('/yes', function(req, res){
 });
 
 
-/* EvEbitda Chart */
 
-var evebitda = "EvEb.html";
-app.get('/eve', function(req, res){
-   res.send(fs.readFileSync(evebitda).toString());
-});
-
-
-/* EvEbitda Chart Data */
-
-var dataevebitda = "EvEbitdaVarios.txt";
-app.get('/dataeve', function(req, res){
-   res.send(fs.readFileSync(dataevebitda).toString());
-});
 
 
 /* Processes httpgetrequest on ticker and stores result on file ./data/pbv.json by calling run_mod module
@@ -65,7 +53,8 @@ app.get('/dataquery',
 	    var ticker = req.query.q;    // guarda el ticker
 	    var run_mod = require('./run_mod.js');  // ejecuta la funcion run_mod con el parametro ticker = KO
 	    run_mod(ticker, function(data) {
-		console.log('contendio de data es: ' + data);
+//		console.log('contendio de data es: ' + data);
+		if (data != undefined) console.log ('data tiene contenido');
 		next();
 	    });
 
@@ -75,7 +64,7 @@ app.get('/dataquery',
    with pbv information in json format from newly created file pbv.json*/
 
 	function(req, res, next) {
-	    console.log ('imprimio prueba!!!!!!!!!!!!!!!!!!!!!!!!!!');
+	    console.log ('Middleware de display.html ejecutado.');
 	    res.send(fs.readFileSync(pbvk).toString()); // NO SERIA MEJOR HACER UN REDIRECT A /pbvg no carga la primera vez en chrome con el request, solo con un reload...
 	});
 
@@ -94,16 +83,62 @@ app.get('/dataquery', function(req, res, next) {
 
 var datapbv = "./data/pbv.json";
 app.get('/datapbv', function(req, res, next){
+    console.log ('Datos de pbv han sido servidos.');
     res.send(fs.readFileSync(datapbv).toString());
 });
 
 
-var pbvka = "pbv.html";
-app.get('/pbvg', function(req, res, next){
-    res.send(fs.readFileSync(pbvka).toString());
+/* serves ./data/pe.json file that is requested in pe.html iframe en display.html */ 
+
+var datape = "./data/pe.json";
+app.get('/datape', function(req, res, next){
+    console.log ('Datos de pe han sido servidos.');
+    res.send(fs.readFileSync(datape).toString());
+});
+
+/* serves .data/evrevenue.json file that is requested in evrev.html iframe en display.html */
+
+var dataevr = "./data/evrevenue.json";
+app.get('/dataevr', function(req, res){
+    console.log ('Datos de evrevenue han sido servidos.');
+   res.send(fs.readFileSync(dataevr).toString());
 });
 
 
+/* serves .data/evebitda.json file that is requested in eveb.html iframe en display.html */
+
+var dataevebitda = "./data/evebitda.json";
+app.get('/dataeve', function(req, res){
+    console.log ('Datos de evebitda han sido servidos.');
+   res.send(fs.readFileSync(dataevebitda).toString());
+});
+
+
+/* Multiple Charts */
+
+var pbvka = "pbv.html";
+app.get('/pbvg', function(req, res, next){
+    console.log ('Grafico de pbv ha sido llamado.');
+    res.send(fs.readFileSync(pbvka).toString());
+});
+
+var peka = "pe.html";
+app.get('/peg', function(req, res, next){
+    console.log ('Grafico de pe ha sido llamado.');
+    res.send(fs.readFileSync(peka).toString());
+});
+
+var evrevenue = "evrev.html";
+app.get('/evrev', function(req, res){
+    console.log ('Grafico de evrevenue ha sido llamado.');
+   res.send(fs.readFileSync(evrevenue).toString());
+});
+
+var evebitda = "eveb.html";
+app.get('/eve', function(req, res){
+    console.log ('Grafico de evebitda ha sido llamado.');
+   res.send(fs.readFileSync(evebitda).toString());
+});
 
 
 

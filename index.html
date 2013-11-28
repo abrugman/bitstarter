@@ -12,100 +12,7 @@
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800"
 	  rel="stylesheet" type="text/css">
-    <style type="text/css">
-
-      /* Large desktop */
-      @media (min-width: 980px) {
-        body {
-         padding-top: 60px;
-        }
-       .linediv-l {
-         border-right: 1px white solid;
-        }
-       .linediv-r {
-         border-left: 1px white solid;
-        }
-      }
-
-      /* landscape phones and down */
-      @media (max-width: 480px) {
-       .copy {
-         padding: 2.5% 10%;
-       }
-       .linediv-l {
-         border-bottom: 1px white solid;
-       }
-       .linediv-r {
-         border-top: 1px white solid;
-       }
-      } 
-
-      /* All form factors */
-
-      /* Main body and headings */
-      body {
-        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-      }
-      .heading, .subheading {
-        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
-        text-align: center;
-      }
-      p.lead {
-        padding-top: 1.5%;
-        font-size: 24px;
-        line-height: 30px;
-      }
-      p {
-        font-size: 18px;
-        line-height: 24px;
-      }
-
-      /* Video pitch and Action */
-      .pitch {
-        padding: 2.5% 0%;
-      }
-      .order {
-        padding: 2% 0%;
-      }
-      .actions {
-        background-color: #343434;
-        padding: 3% 0%;
-      }
-      .video, .thermometer, .order, .social, .statistics {
-        text-align: center;
-      }
-      .statistics h3, .statistics p {
-        color: white;
-      }
-
-      /* Marketing Copy and Footer */
-      .copy {
-        padding-top: 2.5%;
-        padding-bottom: 2.5%;
-        text-align: justify;
-      }
-      .asset {
-        padding: 2.5% 0%;
-      }
-      .footer {
-        color: #cccccc;
-        text-align: center;
-      }
-      .footer p {
-        font-size: 11px;
-      }
-      .footer a {
-        color: #ccccff;
-      }
-
-      /* http://support.addthis.com/customer/portal/questions/1136093-share-buttons-in-center-position */
-      div.addthis_toolbox {
-        width: 250px;
-        margin: 0 auto;
-      }
-
-    </style>
-
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 
     <!-- Google Analytics starts ga.js -->
 
@@ -127,10 +34,14 @@
 
 
   </head>
+
   <body>
 
-    <!-- Mobile-friendly navbar adapted from example. -->
+
     <!-- http://twitter.github.io/bootstrap/examples/starter-template.html -->
+    <!-- MAIN NAVEGATION BAR -->
+
+
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
 	<div class="container">
@@ -150,263 +61,47 @@
       </div>
     </div>
 
-    <!-- We use row-fluid inside containers to achieve a resiable layout. -->
-    <!-- blogs.endjin.com/2013/04/tips-for-implementing-responsive-designs-using-bootstrap/ -->
-    <!-- http://stackoverflow.com/a/12270322 -->
-    <div class="container">
-      <!-- Font and paired font of .heading/.subheading and body from Google Fonts -->
-      <!-- www.google.com/fonts/specimen/Ubuntu -->
-      <!-- www.google.com/fonts/specimen/Ubuntu#pairings -->
-      <div class="row-fluid heading">
-	<div class="span12">
-	  <h1>Stockety</h1>
-	</div>
-      </div>
-      <div class="row-fluid subheading">
-	<div class="span12">
-	  <!-- special typography from Bootstrap for lead paragraph. -->
-	  <!-- http://twitter.github.io/bootstrap/base-css.html#typographt -->
-	  <p class="lead">Analytical Finance</p>
-	</div>
-      </div>
-      <div class="row-fluid pitch">
-	<div class="span5 offset1 copy" style="padding-top: 0px;">
-	  <p>This project is about building an analytic tool that calculates and displays historical charts of the most common valuation multiples of public companies. We would concentrate in EV/EBITDA, EV/Revenues, P/E and P/BV multiples. We will start covering the 30 stocks of the Dow Jones Industrial Average as of June 2013, and when we test the user interface and the backend operation, we would incorporate further stocks from other indexes. The goal is to cover most of the equity spectrum of developed capital markets and some emerging markets, and to gradually incorporate further types of analysis, such as peer multiple comparisons.
-	  </p>  
-	</div>
 
-	<!-- We define a new 'actions' div to contain statistics, order, and share buttons.-->
-	<div class="span5 actions">
-	  <div class="row-fluid">
-	  <div class="span8 offset2">
-	    <div class="row-fluid statistics">
-	      <div class="span4">
-		<!-- linediv-l and linediv-r give dividing lines that look
-		different in horizontal and vertical layouts, illustrting 
-		media queries. -->
-		<div class="linediv-l">
-		<h3>0</h3> <p>backers</p>
-		</div>
-	      </div>
-	      <div class="span4">
-		<div class="linediv-c">
-		  <h3>$0</h3> <p>of $30,000</p>
-		</div>
-	      </div>
-	      <div class="span4">
-		<div class="linediv-r">
-		<h3>30</h3> <p>days left</p>
-		</div>
-	      </div>
+
+
+
+
+    <!-- CODE GOES HERE -->
+
+    <form action="/dataquery">
+    <div class="row-fluid heading">
+	    <div class="input-append">
+	      <input name="q" class="span12" id="appendedInputButton" type="text/javascript" placeholder="Insert Ticker">
+	      <button class="btn" type="submit">Go</button>
+	    </div>
 	  </div>
-	</div>
-	<div class="row-fluid">  
-	<div class="span10 offset1">
-	  <!-- Bootstrap progress bar -->
-	  <!-- http://twitter.github.io/bootstrap/components.html#progress -->
-	  <div class="thermometer progress active">
-	    <div class="bar bar-success" style="width: 60%;"></div>
-	    <div class="bar bar-warning" style="width: 40%;"></div>
-	  </div>
-	</div>  
-	</div>
-	<div class="row-fluid">
-	<div class="span6 offset3 order">
-	  <!-- Standard Bootstrap button. -->
-	  <!-- http://twitter.github.io/bootstrap/base-css.html#buttons -->
-	  <!-- <button class="btn btn-success btn-large">Preorder</button> -->
-	  <a class="coinbase-button" 
-	     data-code="645b70a1c5dc143ca65e60c898cc6f5c" 
-	     data-button-style="custom_large"
-	     data-button-text="Subscribe With Bitcoin"
-	     href="https://coinbase.com/checkouts/645b70a1c5dc143ca65e60c898cc6f5c">Subscribe With Bitcoin</a>
-	  <script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
-	</div>
-	</div>
-	<div class="row-fluid">
-	<div class="span8 offset2 social">
-	<!-- AddThis Button BEGIN -->
-		<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-		<a class="addthis_button_facebook"></a>
-		<a class="addthis_button_twitter"></a>
-		<a class="addthis_button_google_plusone_share"></a>
-		<a class="addthis_button_email"></a>
-		<a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-		</div>
-	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5200f5233ead1e04"></script>
-	<!-- AddThis Button END -->
-	</div>
-	</div>
-      </div>
-      </div>	  
     </div>
-
-    <!-- Beyond this part the marketing copy begins. -->
-    <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/text-align -->
-    <!-- http://twitter.github.io/bootstrap/base-css.html#images -->
-    <!-- http://placehold.it -->
-
-    <!--FAQ -->
-
-    <div class="row-fluid faq">
-      <div class="span10 offset1">
-	<h3>FAQ</h3>
-	<div class="accordion" id="accordion2">
-	  <div class="accordion-group">
-	    <div class="accordion-heading">
-	      <a class="accordion toggle" data-toggle="collapse"
-		 data-parent="#accordion2" href="#collapseOne">
-		Why historical multiple comparison?
-	      </a>
-	    </div>
-	    <div id="collapseOne" class="accordion-body collapse">
-	      <div class="accordion-inner">
-Although peer comparison is one of the most common exercises made when comparing stocks in terms of value, historical evolution of such multiples offers an alternative spectrum of information. By identifying the level at which a given company trades in term of its history, one can understand, for instance, the effects of historical exogenous factors on the value of such stock, such as technological trends, competition, investors sentiment toward management, industry, or even a country. We believe that company fundamentals provide valuable information to an investor when making investment decisions, henceforth careful analysis of multiples should be one of the criteria used when taking financial decisions, from our point of view.
-	      </div>
-	    </div>
-	  </div>
-	  <div class="accordion-group">
-	    <div class="accordion-heading">
-	      <a class="accordion toggle" data-toggle="collapse"
-		 data-parent="#accordion2" href="#collapseTwo">
-		What are your key differences?
-	      </a>
-	    </div>
-	    <div id="collapseTwo" class="accordion-body collapse">
-	      <div class="accordion-inner">
-We are not a substitute of financial data providers and webpages. On the contrary, our goal is to contribute with other type of analytical financial tools. This project would pay special attention to differentiate itself from current data providers and financial websites in three fronts: Quality of its database, detail in its analysis, and innovative charts. In addition, our purpose is to provide a valuable user experience with high quality visual design, without excessive advertisement, nor intrusive emails or publicity to subscribers. In a few words, we are an analytical tool rather than a descriptive a website.		
-	      </div>
-	    </div>
-	  </div>
-
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion toggle" data-toggle="collapse"
-                 data-parent="#accordion3" href="#collapseThree">
-                Which are the sources of your data?
-              </a>
-            </div>
-            <div id="collapseThree" class="accordion-body collapse">
-              <div class="accordion-inner">
-		Most public information about historical valuation multiples is either scarce, or available only to subscribers of a given service or institution. All of our data is of public domain. Our database, which is being constructed with public information, would start as of 1994, year in which electronic filings on EDGAR can be retrieved. Historical stock prices are being downloaded from YahooFinance.
-              </div>
-            </div>
-          </div>
- 
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion toggle" data-toggle="collapse"
-                 data-parent="#accordion4" href="#collapseFour">
-                Why contribute via Bitcoin to the project?
-              </a>
-            </div>
-            <div id="collapseFour" class="accordion-body collapse">
-              <div class="accordion-inner">
-                In case this website finds enough traction and generates traffic that implies greater technological tasks and resources, one would expect to obtain revenues to fund operation from a small subscription fee, amongst others. Those who contribute with one (1) bitcoin or more in this initial stage, will have free access to this site, even if we start charging for subscriptions on a later stage.
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion toggle" data-toggle="collapse"
-                 data-parent="#accordion5" href="#collapseFive">
-                Valuation Multiples are sufficient to invest in public equities?
-              </a>
-            </div>
-            <div id="collapseFive" class="accordion-body collapse">
-              <div class="accordion-inner">
-                No. Although historical valuation multiples, if we succeed in providing them, may be useful to some investors when analyzing stocks, it may be the case that they are not valuable to others. Multiples are difficult to control from inside management, and their magnitude over time is exposed to macroeconomic, technological and political risk, among others. For instance, buying a particular stock when its multiples are at a lower level than their historical averages does not guarantee that in the future such multiples would expand. Therefore, it is recommended to search and analyze information from other sources before making investment decisions. As well, you should at least study company financials and filings, shareholder reports, understand the industry, competitive advantages.
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion toggle" data-toggle="collapse"
-                 data-parent="#accordion6" href="#collapseSix">
-                Your data is accurate?
-              </a>
-            </div>
-            <div id="collapseSix" class="accordion-body collapse">
-              <div class="accordion-inner">
-                No. The database and website are under construction and in beta version; our project is provided as is, and we cannot guarantee the accuracy of our analysis given that some of our data, such as EBITDA and daily outstanding stocks, are not directly disclosed in public filings and hence, they need to be estimated from accounting data. Estimated figures may differ from actual ones.
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion toggle" data-toggle="collapse"
-                 data-parent="#accordion7" href="#collapseSeven">
-                Which are the main challenges that you face in order to complete the project?
-              </a>
-            </div>
-            <div id="collapseSeven" class="accordion-body collapse">
-              <div class="accordion-inner">
-                We are facing some analytical challenges, specifically the unavailability of public outstanding stock figures on a daily basis, and parsing financial figures from public filings on a massive scale. Although such issues can be solved by purchasing the data from several financial data providers, our intention is to build our own database with our own proprietary software and algorithms, EBITDA estimates, and other financial data directly from public filings. As well, we are a startup and henceforth it would be a challenge to attract talent to the team. Finally, we cannot guarantee that our software will succeed in parsing all the accounting data we need from public filings.
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion toggle" data-toggle="collapse"
-                 data-parent="#accordion8" href="#collapseEight">
-                Do you have the experience to build the site?
-              </a>
-            </div>
-            <div id="collapseEight" class="accordion-body collapse">
-              <div class="accordion-inner">
-                Yes, we believe so. Stockety is being built and maintained by a financial investment analyst in its spare time, who has an Engineering and Operations Research background. All of the analytical methodology to be applied is a result of more than 15 years of professional experience on investment banking, equity research, and private equity investments, in both emerging and developed markets. However, we cannot guarantee success, as empirical evidence has shown that parsing text files correctly is hard, and therefore is difficult to say in advance if we will be successful on building our complete database with automated methods.
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion toggle" data-toggle="collapse"
-                 data-parent="#accordion9" href="#collapseNine">
-                How can I reach you?
-              </a>
-            </div>
-            <div id="collapseNine" class="accordion-body collapse">
-              <div class="accordion-inner">
-		For feedback and comments please send an email to: admin@stockety.com
-              </div>
-            </div>
-          </div>
+    </form>
 
 
-	</div>
-      </div>
 
-    </div>
+<!-- building blocks chart svg type -->
+
+<object type="image/svg+xml" class="building" style="float:right" data="/yes"></object>
+
+
+
+
+
+
 
 
     <!-- Not crucial -->
+    <div class="pie-pagina">
     <div class="row-fluid footer">
       <div class="span12">
 	<p>This work is licensed under
 	  the <a ref="http://creativecommons.org/licenses/by-sa/3.0/">CC
-	    By-SA 3.0</a>
-	</p>
+	    By-SA 3.0</a></p>
       </div>
     </div>
     </div>
-
-    <!-- Google Analytics -->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-22114837-1');
-      ga('send', 'pageview');
-
-    </script>
-    <!-- End Google Analytics -->
-
+    </div>
   </body>
+
 </html>

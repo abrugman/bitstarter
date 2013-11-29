@@ -14,9 +14,17 @@ module.exports = function (tick, callback) {
 
     connection.connect();
 
+
+    // PARA PREVENIR INJECTIONS HACER UNA PRUEBA QUE EL TICK.LENGTH ES MENOR A SIETE Y EN UN FUTURO QUE DATES ES IGUAL A DIEZ????
+
+    // For Security
+    var user_input = tick;
+    var sql = 'CALL process_data(' + connection.escape(user_input) + ', "2011-06-01", "2013-08-20")';
+
     // Llama Stored Procedure process_data para generar tables temporales
 
-    connection.query('CALL process_data("' + tick +'", "2011-06-01", "2013-08-20")');
+//  query viejo para referencia: connection.query('CALL process_data("' + tick +'", "2011-06-01", "2013-08-20")');
+    connection.query(sql);
 
 
     // obtiene la informacion de EVREVENUES y la guarda en archivo evrevenue.json en directorio ./data/ 

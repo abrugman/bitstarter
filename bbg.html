@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.chart rect {
+  fill: steelblue;
+}
+
+.chart text {
+  fill: black;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+
+.axis text {
+  font: 10px sans-serif;
+  fill: black;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.new {
+  fill: azure;
+}
+
+</style>
+
+<svg class="chart"></svg>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+ 
+var answer = [];
+var nom = [];
+var data = [];
+
+d3.json("/databbg", function(error, json) {
+
+//d3.json("bbgbig.json", function(error, json) {
+
+    answer = json;
+
+//  construccion de datos
+
+    var i = answer.length - 1;
+    var n = 0;
+
+    data[0] = answer[i].mkt_cap;
+    data[1] = Number((( answer[n].ebitda12m - answer[i].ebitda12m ) * answer[i].multiple).toFixed(0));
+    data[2] = answer[i].net_debt - answer[n].net_debt;
+
+//  falta revisar ajustes en el calculo de EV porque grafico no es exacto
+//  data[3] = Number((( answer[n].multiple - answer[i].multiple ) * answer[i].ebitda12m).toFixed(0));
+
+    data[4] = answer[n].mkt_cap;
+
+//  por diferencia por el momento
+
+    data[3] = Number((data[4] - data[0] - data [1] - data [2]).toFixed(0));
+
+var nom = ["InitialMarketCap", "EBITDA Change", "NetDebt Change", "Multiple Variation", "FinalMarketCap"];
+
+var barra = [];
+
+var ac1 = data[0];
+var ac2 = data[0]+data[1];
+var ac3 = data[0]+data[1]+data[2];
+var ac4 = data[0]+data[1]+data[2]+data[3];
+var ac5 = data[4];
+
+var data_acum = [ac1, ac2, ac3, ac4, ac5]
+
+
+function process(vector) {
+    var d1= false;
+    var d2= false;
+    var d3= false;
+    var a= data[0];
+    var z= data[4];
+
+    barra[0]=a;
+    barra[4]=z;
+
+    if (vector[1]<0) {
+		   barra[1]=-vector[1];
+	           d1=true;
+		   ac1=vector[0]+vector[1];
+		   }
+    else barra[1]=vector[1]
+
+    if (vector[2]<0) {
+		   barra[2]=-vector[2];
+		   d2 = true;
+		   ac2 = vector[0]+vector[1]+vector[2];
+		   }
+    else barra[2]=vector[2]
+
+    if (vector[3]<0) {
+		   barra[3]=-vector[3];
+		   d3 = true;
+		   ac3 = vector[4];
+		   }
+    else barra[3]=vector[3]
+}
+
+process(data);
+
+
+var margin = {top: 20, right: 20, bottom: 20, left: 60},
+    width = 500 - margin.left - margin.right,
+    barHeight = 42,
+    height= 250 - margin.top - margin.bottom;
+
+var x = d3.scale.linear()
+    .domain([0, d3.max(data_acum)])
+    .range([0, width-100]);
+
+var chart = d3.select(".chart")
+    .attr("width", width)
+    .attr("height", 250 - margin.top - margin.bottom);
+
+var acum = [100, 100+ac1*x(1), 100+ac2*x(1), 100+ac3*x(1), 100];
+
+var bar = chart.selectAll("g")
+    .data(barra)
+  .enter().append("g")
+    .attr("transform", function(d, i) { return "translate(" + acum[i] + "," + i * barHeight + ")"; });
+
+bar.append("rect")
+    .attr("width", x)
+    .attr("height", barHeight - 1);
+
+bar.append("text")
+    .attr("x", function(d) { return x(d) - 3; })
+    .attr("y", barHeight / 2)
+    .attr("dy", ".35em")
+    .text(function(d,i) { if (data[i]<0) return data[i]; 
+					 else return data[i];
+			});
+
+var y = d3.scale.ordinal()
+    .domain(nom)
+    .rangeBands([ 0 , (height - 2) ]);
+
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(0)
+    .tickSize(0);
+
+
+chart.append("g")
+    .attr("class", "y axis")
+    .attr("transform", "translate(100," + 0 + ")")
+    .call(yAxis);
+
+// var inibar = d3.select("rect").attr("class", "new");
+
+
+});
+
+</script>
+
+

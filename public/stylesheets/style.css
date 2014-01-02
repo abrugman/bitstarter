@@ -149,3 +149,14 @@
       width: 550px;
       border: 0px;
       }
+
+      .bbgc {
+      position: fixed;
+      top: 20%;
+      left: 20%;
+      margin-left: -100px;
+      margin-top: -20px;
+      height: 300px;
+      width: 550px;
+      border: 0px;
+      }

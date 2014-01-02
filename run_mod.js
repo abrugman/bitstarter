@@ -78,7 +78,24 @@ module.exports = function (tick, callback) {
     });
 
 
-    // obtiene la informacion de PE y la guarda en archivo pe.json en directorio ./data/ 
+
+    // obtiene la informacion de bbg y la guarda en archivo bbg.json en directorio ./data/ 
+
+    var bb = [];  
+
+    connection.query('SELECT DATE_FORMAT(date, "%m/%d/%y") AS "date", id, mkt_cap, ev, net_debt, ebitda12m, multiple FROM bbg', function(err, rows) {
+	if (err) throw err;
+	fs.writeFile('./data/bbg.json', JSON.stringify(rows), function (err) {if (err) throw err;});
+	bb = JSON.stringify(rows);
+	console.log('El archivo bbg.json ha sido generado y los datos han sido guardados en una variable');
+//	callback(pe);
+    });
+
+
+
+
+
+    // termina conexion
     
 
     var ans = er + eb + pb + pe;

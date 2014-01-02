@@ -114,6 +114,15 @@ app.get('/dataeve', function(req, res){
 });
 
 
+/* serves .data/bbg.json file that is requested in bbg.html iframe en display.html */
+
+var databbga = "./data/bbg.json";
+app.get('/databbg', function(req, res){
+    console.log ('Datos de bbg han sido servidos.');
+   res.send(fs.readFileSync(databbga).toString());
+});
+
+
 /* Multiple Charts */
 
 var pbvka = "pbv.html";
@@ -138,6 +147,15 @@ var evebitda = "eveb.html";
 app.get('/eve', function(req, res){
     console.log ('Grafico de evebitda ha sido llamado.');
    res.send(fs.readFileSync(evebitda).toString());
+});
+
+
+/* building blocks Charts */
+
+var bbga = "bbg.html";
+app.get('/bbg', function(req, res){
+    console.log ('Grafico de bbg ha sido llamado.');
+   res.send(fs.readFileSync(bbga).toString());
 });
 
 

@@ -1,4 +1,4 @@
-      /* Large desktop */
+      /* Large desktop 
       @media (min-width: 980px) {
         body {
          padding-top: 60px;
@@ -9,9 +9,12 @@
        .linediv-r {
          border-left: 1px white solid;
         }
-      }
+      } 
+
+
 
       /* landscape phones and down */
+/*
       @media (max-width: 480px) {
        .copy {
          padding: 2.5% 10%;
@@ -24,14 +27,16 @@
        }
       } 
 
+*/
+
       /* All form factors */
 
       /* Main body and headings */
       body {
-        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+        font-family: "Open Sans", Helvetica, Arial, sans-serif;
       }
       .heading, .subheading {
-        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+        font-family: "Ubuntu", Helvetica, Arial, sans-serif; 
         text-align: center;
       }
       p.lead {
@@ -82,7 +87,7 @@
         color: #ccccff;
       }
 
-      /* http://support.addthis.com/customer/portal/questions/1136093-share-buttons-in-center-position */
+      /* http://support.addthis.com/customer/portal/qstions/1136093-share-buttons-in-center-position */
       div.addthis_toolbox {
         width: 250px;
         margin: 0 auto;
@@ -110,6 +115,17 @@
       position: fixed;
       top: 20%;
       left: 10%;
+      margin-left: -100px;
+      margin-top: -20px;
+      height: 300px;
+      width: 550px;
+      border: 0px;
+      }
+
+      .logo {
+      position: fixed;
+      top: 30%;
+      left: 40%;
       margin-left: -100px;
       margin-top: -20px;
       height: 300px;
@@ -145,17 +161,6 @@
       left: 10%;
       margin-left: -100px;
       margin-top: 240px;
-      height: 300px;
-      width: 550px;
-      border: 0px;
-      }
-
-      .bbgc {
-      position: fixed;
-      top: 20%;
-      left: 20%;
-      margin-left: -100px;
-      margin-top: -20px;
       height: 300px;
       width: 550px;
       border: 0px;

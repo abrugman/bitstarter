@@ -36,9 +36,9 @@ app.get('/start', function(req, res){
 
 /* Example chart svg */
 
-var chart = "./public/images/yes.svg";
-app.get('/yes', function(req, res){
-   res.send(fs.readFileSync(chart).toString());
+var logo = "./public/htmls/slow.html";
+app.get('/logo', function(req, res){
+   res.send(fs.readFileSync(logo).toString());
 });
 
 
@@ -150,12 +150,36 @@ app.get('/eve', function(req, res){
 });
 
 
-/* building blocks Charts */
+/* building blocks Charts and page two Charts */
 
 var bbga = "bbg.html";
 app.get('/bbg', function(req, res){
     console.log ('Grafico de bbg ha sido llamado.');
    res.send(fs.readFileSync(bbga).toString());
+});
+
+var ev = "ev.html";
+app.get('/ev', function(req, res){
+    console.log ('Grafico de ev ha sido llamado.');
+   res.send(fs.readFileSync(ev).toString());
+});
+
+var capnd = "capnd.html";
+app.get('/capnd', function(req, res){
+    console.log ('Grafico de capnd ha sido llamado.');
+   res.send(fs.readFileSync(capnd).toString());
+});
+
+var ebitda = "ebitda.html";
+app.get('/ebitda', function(req, res){
+    console.log ('Grafico de ebitda ha sido llamado.');
+   res.send(fs.readFileSync(ebitda).toString());
+});
+
+var mktcap = "mktcap.html";
+app.get('/mktcap', function(req, res){
+    console.log ('Grafico de mktcap ha sido llamado.');
+   res.send(fs.readFileSync(mktcap).toString());
 });
 
 

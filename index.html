@@ -4,15 +4,24 @@
     <meta charset="utf-8">
     <title>Stockety</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+
+
+    <!-- old links -->
+
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css"> 
+
     <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
-    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
-    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
+
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800"
 	  rel="stylesheet" type="text/css">
+
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+
 
     <!-- Google Analytics starts ga.js -->
 
@@ -38,66 +47,53 @@
   <body>
 
 
-    <!-- http://twitter.github.io/bootstrap/examples/starter-template.html -->
-    <!-- MAIN NAVEGATION BAR -->
+    <!-- NEW NAVIGATION BAR -->
 
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-	<div class="container">
-	  <button type="button" class="btn btn-navbar">
-	          data-toggle="collapse" data-target=".nav-collapse">
-	     <span class="icon-bar"></span>
-	     <span class="icon-bar"></span>
-	     <span class="icon-bar"></span>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	<span class="icon-bar"></span>
 	  </button>
-	  <a class="brand" href="/">Stockety</a>
-	  <div class="nav-collapse collapse">
-	    <ul class="nav">
-	      <li><a href="/start">Start</a></li>
-	    </ul>
-	  </div><!--/.nav-collapse -->
+	  <a class="navbar-brand" href="/">Stockety</a>
 	</div>
+	
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	  
+	  <form action="/dataquery" class="navbar-form navbar-left" role="search">
+	    <div class="form-group">
+              <input name="q" type="text" class="form-control" placeholder="Search Ticker">
+	    </div>
+	    <button type="submit" class="btn btn-default">Submit</button>
+	  </form>
+	  <ul class="nav navbar-nav navbar-right">
+	    <li><a href="/start">About</a></li>
+	  </ul>
+	</div><!-- /.navbar-collapse -->
       </div>
-    </div>
-
-
-
+    </nav>
 
 
 
     <!-- CODE GOES HERE -->
 
-    <form action="/dataquery">
-    <div class="row-fluid heading">
-	    <div class="input-append">
-	      <input name="q" class="span12" id="appendedInputButton" type="text/javascript" placeholder="Insert Ticker">
-	      <button class="btn" type="submit">Go</button>
-	    </div>
-	  </div>
-    </div>
-    </form>
 
+    <!-- LOGO -->
 
+    <iframe class="logo" id="extFrame" src="/logo" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 
-<!-- building blocks chart svg type -->
+    <!-- FOOTER -->
 
-<object type="image/svg+xml" class="building" style="float:right" data="/yes"></object>
-
-
-
-
-
-
-
-
-    <!-- Not crucial -->
     <div class="pie-pagina">
     <div class="row-fluid footer">
       <div class="span12">
-	<p>This work is licensed under
-	  the <a ref="http://creativecommons.org/licenses/by-sa/3.0/">CC
-	    By-SA 3.0</a></p>
+	<p>Stockety Copyright</p>
       </div>
     </div>
     </div>

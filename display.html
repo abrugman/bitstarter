@@ -4,100 +4,131 @@
     <meta charset="utf-8">
     <title>Stockety</title>
     <meta name ="viewport" content ="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+
+
+
+    <!-- old links -->
+
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css"> 
+
     <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
     
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-    
-    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
-    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800"
 	  rel="stylesheet" type="text/css">
+
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 
   </head>
   <body>
 
 
-    <!-- http://twitter.github.io/bootstrap/examples/starter-template.html -->
-    <!-- MAIN NAVEGATION BAR -->
 
+    <!-- NEW NAVEGATION BAR -->
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-	<div class="container">
-	  <button type="button" class="btn btn-navbar">
-	          data-toggle="collapse" data-target=".nav-collapse">
-	     <span class="icon-bar"></span>
-	     <span class="icon-bar"></span>
-	     <span class="icon-bar"></span>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	<span class="icon-bar"></span>
 	  </button>
-	  <a class="brand" href="/">Stockety</a>
-	  <div class="nav-collapse collapse">
-	    <ul class="nav">
-	      <li><a href="/start">Start</a></li>
-	    </ul>
-	  </div><!--/.nav-collapse -->
+	  <a class="navbar-brand" href="/">Stockety</a>
 	</div>
+	
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	  
+	  <form action="/dataquery" class="navbar-form navbar-left" role="search">
+	    <div class="form-group">
+              <input name="q" type="text" class="form-control" placeholder="Search Ticker">
+	    </div>
+	    <button type="submit" class="btn btn-default">Submit</button>
+	  </form>
+	  <ul class="nav navbar-nav navbar-right">
+	    <li><a href="/start">About</a></li>
+	  </ul>
+	</div><!-- /.navbar-collapse -->
       </div>
-    </div>
-
-
-
-
+    </nav>
 
 
     <!-- CODE GOES HERE -->
 
-    <form action="/dataquery">
-    <div class="row-fluid heading">
-	    <div class="input-append">
-	      <input name="q" class="span12" id="appendedInputButton" type="text/javascript" placeholder="Insert Ticker">
-	      <button class="btn" type="submit">Go</button>
-	    </div>
-	  </div>
-    </div>
-    </form>
-
-
-
 <!-- toolbar -->
 
-<div class="bs-example">
-  <div class="btn-toolbar" role="toolbar">
-    <div class="btn-group">
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-align-left"></span></button>
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-align-center"></span></button>
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-align-right"></span></button>
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-align-justify"></span></button>
+    <div class="row">
+      <div class="col-md-10"></div>
+      <div class="col-md-2">
+	<div class="btn-group">
+	  <button id="uno" type="button" class="btn btn-default" onclick="console.log('boton uno');" autofocus="autofocus"><span class="glyphicon glyphicon-adjust"></span></button>
+	  <button id="dos" type="button" class="btn btn-default" onclick="console.log('boton dos');"><span class="glyphicon glyphicon-asterisk"></span></button>
+	  <button id="tres" type="button" class="btn btn-default" onclick="console.log('boton tres');"><span class="glyphicon glyphicon-remove-circle"></span></button>
+	  <button id="cuatro" type="button" class="btn btn-default" onclick="console.log('boton cuatro');"><span class="glyphicon glyphicon-retweet"></span></button>
+	</div>      
+      </div>
     </div>
-  </div>
-</div> 
+
+
+    <script type="text/javascript">
+
+      $('#uno').click(function() {
+      console.log("You clicked on the first button.");
+      $('#building').attr('src', '/evrev');
+      $('#evebi').attr('src', '/eve');
+      $('#exam').attr('src', '/peg');
+      $('#pbvbi').attr('src', '/pbvg');
+      });
+
+      $('#dos').click(function() {
+      console.log("You clicked on the second button.");
+      $('#building').attr('src', '/bbg');
+      $('#evebi').attr('src', '/mktcap');
+      $('#exam').attr('src', '/capnd');
+      $('#pbvbi').attr('src', '/ebitda');
+      });
+
+      $('#tres').click(function() {
+      console.log("You clicked on the third button.");
+      $('#building').attr('src', '/ev');
+      $('#evebi').attr('src', '/logo');
+      $('#exam').attr('src', '/bbg');
+      $('#pbvbi').attr('src', '/logo');
+      });
+
+      $('#cuatro').click(function() {
+      console.log("You clicked on the fourth button.");
+      $('#building').attr('src', '/bbg');
+      $('#evebi').attr('src', '/bbg');
+      $('#exam').attr('src', '/bbg');
+      $('#pbvbi').attr('src', '/bbg');
+      });
+
+
+    </script>
 
 
 
 
 
 
-<!-- multiples charts -->
 
-<iframe class="building" id="extFrame" src="/evrev" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<!-- four charts -->
 
-<iframe class="evebi" id="extFrame" src="/eve" marginwidth="0" marginheight="0" scrolling="no"></iframe> 
+<iframe class="building" id="building" src="/evrev" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 
-<iframe class="exam" id="extFrame" src="/peg" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<iframe class="evebi" id="evebi" src="/eve" marginwidth="0" marginheight="0" scrolling="no"></iframe> 
 
-<iframe class="pbvbi" id="extFrame" src="/pbvg" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<iframe class="exam" id="exam" src="/peg" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 
-
-
-<!-- building blocks charts -->
-
-<iframe class="bbgc" id="extFrame" src="/bbg" marginwidth="0" marginheight="0" scrolling="no"></iframe>
-
-
+<iframe class="pbvbi" id="pbvbi" src="/pbvg" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 
 
 
@@ -107,9 +138,7 @@
     <div class="pie-pagina">
     <div class="row-fluid footer">
       <div class="span12">
-	<p>This work is licensed under
-	  the <a ref="http://creativecommons.org/licenses/by-sa/3.0/">CC
-	    By-SA 3.0</a></p>
+	<p>Stockety Copyright</p>
       </div>
     </div>
     </div>

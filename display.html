@@ -24,10 +24,11 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 
   </head>
+
+
+
+
   <body>
-
-
-
     <!-- NEW NAVEGATION BAR -->
 
     <nav class="navbar navbar-default" role="navigation">
@@ -60,12 +61,29 @@
     </nav>
 
 
+    <!-- DECLARACION DE VARIABLES 
+
+    <script type="text/javascript">
+
+    </script> -->
+
     <!-- CODE GOES HERE -->
 
 <!-- toolbar -->
 
     <div class="row">
-      <div class="col-md-10"></div>
+      <div class="col-md-3">
+        <p id="empresa"></p>
+      </div>
+      <div class="col-md-3">
+	  <p id="precio"></p>
+      </div>
+      <div class="col-md-2">
+	<p id="trimestre"></p>
+      </div>
+      <div class="col-md-2">
+	<p id="lastdate"></p>
+      </div>
       <div class="col-md-2">
 	<div class="btn-group">
 	  <button id="uno" type="button" class="btn btn-default" onclick="console.log('boton uno');" autofocus="autofocus"><span class="glyphicon glyphicon-adjust"></span></button>
@@ -111,6 +129,38 @@
       $('#pbvbi').attr('src', '/bbg');
       });
 
+      var foo = [];
+      $.getJSON('/nomb', function(data) {
+      foo = data;
+      $('#empresa').text(foo[0].name); 
+      });
+
+      var poo = [];
+      $.getJSON('/precio', function(data) {
+      poo = data;
+      $('#precio').text('Last Price: $' + poo[0].close); 
+      });
+
+      var trimes = [];
+      $.getJSON('/tri', function(data) {
+      trimes = data;
+      });
+
+      var anno = [];
+      $.getJSON('/an', function(data) {
+      anno = data;
+      $('#trimestre').text('Last Filing: ' + trimes[0].quarter + 'Q' + anno[0].year); 
+      });
+
+      var last_date = "";
+      var last_da = [];
+      $.getJSON('/ldate', function(data) {
+      last_da = data;
+      var dummy = last_da[0].date
+      last_date = dummy.replace('T00:00:00.000Z', '');
+      $('#lastdate').text(last_date);
+      });
+
 
     </script>
 
@@ -122,13 +172,13 @@
 
 <!-- four charts -->
 
-<iframe class="building" id="building" src="/evrev" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<iframe class="building" id="building" src="/evrev" marginwidth="0" marginheight="0" scrolling="no" class="img-responsive"></iframe>
 
-<iframe class="evebi" id="evebi" src="/eve" marginwidth="0" marginheight="0" scrolling="no"></iframe> 
+<iframe class="evebi" id="evebi" src="/eve" marginwidth="0" marginheight="0" scrolling="no" class="img-responsive"></iframe> 
 
-<iframe class="exam" id="exam" src="/peg" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<iframe class="exam" id="exam" src="/peg" marginwidth="0" marginheight="0" scrolling="no" class="img-responsive"></iframe>
 
-<iframe class="pbvbi" id="pbvbi" src="/pbvg" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<iframe class="pbvbi" id="pbvbi" src="/pbvg" marginwidth="0" marginheight="0" scrolling="no" class="img-responsive"></iframe>
 
 
 

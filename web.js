@@ -122,6 +122,48 @@ app.get('/databbg', function(req, res){
    res.send(fs.readFileSync(databbga).toString());
 });
 
+/* serves .data/nombre.json file that has name of companyto be shown in display.html */
+
+var nom = "./data/nombre.json";
+app.get('/nomb', function(req, res){
+    console.log ('Datos de nombre han sido servidos.');
+    res.send(fs.readFileSync(nom).toString());
+});
+
+/* serves .data/precio.json file that has the last price used to calculate data to be shown in display.html */
+
+var prec = "./data/precio.json";
+app.get('/precio', function(req, res){
+    console.log ('Datos de precio han sido servidos.');
+    res.send(fs.readFileSync(prec).toString());
+});
+
+/* serves .data/l_date.json file that has the last date used to calculate data to be shown in display.html */
+
+var lastdate = "./data/l_date.json";
+app.get('/ldate', function(req, res){
+    console.log ('Datos de lastDate han sido servidos.');
+    res.send(fs.readFileSync(lastdate).toString());
+});
+
+/* serves .data/anno.json file that has the last year used to calculate data to be shown in display.html */
+
+var anio = "./data/anno.json";
+app.get('/an', function(req, res){
+    console.log ('Datos de anno han sido servidos.');
+    res.send(fs.readFileSync(anio).toString());
+});
+
+/* serves .data/trim.json file that has the last quarter used to calculate data to be shown in display.html */
+
+var quart = "./data/trim.json";
+app.get('/tri', function(req, res){
+    console.log ('Datos de trimestre han sido servidos.');
+    res.send(fs.readFileSync(quart).toString());
+});
+
+
+
 
 /* Multiple Charts */
 

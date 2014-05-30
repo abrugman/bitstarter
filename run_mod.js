@@ -19,7 +19,30 @@ module.exports = function (tick, callback) {
 
     // For Security
     var user_input = tick;
-    var sql = 'CALL process_data(' + connection.escape(user_input) + ', "2011-06-01", "2013-08-20")';
+ //   var sql = 'CALL process_data(' + connection.escape(user_input) + ', "2011-06-01", "2013-08-20")';
+// cambio abril 2014 ponr anterior y borrar siguiente en caso de danno ademas como poner today
+    
+    var initialDate = "1994-01-01";
+
+    // para fijar fecha de hoy se requiere el siguiente procedimiento
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+	dd='0'+dd
+    } 
+
+    if(mm<10) {
+	mm='0'+mm
+    } 
+
+    var lastDate = '"' + yyyy + '-' + mm + '-' + dd + '"';
+
+    var sql = 'CALL process_data(' + connection.escape(user_input) + ', ' + initialDate + ', ' + lastDate + ')';
+
 
     // Llama Stored Procedure process_data para generar tables temporales
 
@@ -90,6 +113,72 @@ module.exports = function (tick, callback) {
 	console.log('El archivo bbg.json ha sido generado y los datos han sido guardados en una variable');
 //	callback(pe);
     });
+
+
+
+    // obtiene el nombre de la empresa consultada y lo guarda en archivo nombre.json en directorio ./data/ fecha mayo 23 2014 
+
+    var nombre = [];  
+    var nuevo_sql = 'SELECT name FROM stock WHERE ticker=' + connection.escape(user_input) + ';';
+
+    connection.query(nuevo_sql, function(err, rows) {
+	if (err) throw err;
+	fs.writeFile('./data/nombre.json', JSON.stringify(rows), function (err) {if (err) throw err;});
+	nombre = JSON.stringify(rows);
+	console.log('El archivo nombre.json ha sido generado y los datos han sido guardados en una variable');
+//	callback(pe);
+    });
+
+
+
+
+    // obtiene el ultimo precio de la empresa consultada y lo guarda en archivo precio.json en directorio ./data/ fecha mayo 26 2014 
+
+    var precio = [];
+    var sql_precio = 'select close from price inner join stock ON (price.stock_id = stock.id) and (stock.ticker = ' + connection.escape(user_input) + ') order by date desc limit 1;';
+
+    connection.query(sql_precio, function(err, rows) {
+	if (err) throw err;
+	fs.writeFile('./data/precio.json', JSON.stringify(rows), function (err) {if (err) throw err;});
+	precio = JSON.stringify(rows);
+	console.log('El archivo precio.json ha sido generado y los datos han sido guardados en una variable');
+    });
+
+
+    // obtiene la ultima fecha y lo guarda en archivo l_date.json en directorio ./data/ fecha mayo 26 2014 
+
+    var l_date = [];
+    var sql_l_date = 'select date from price inner join stock ON (price.stock_id = stock.id) and (stock.ticker = ' + connection.escape(user_input) + ') order by date desc limit 1;';
+
+    connection.query(sql_l_date, function(err, rows) {
+	if (err) throw err;
+	fs.writeFile('./data/l_date.json', JSON.stringify(rows), function (err) {if (err) throw err;});
+	l_date = JSON.stringify(rows);
+	console.log('El archivo l_date.json ha sido generado y los datos han sido guardados en una variable');
+    });
+
+
+
+
+
+    // obtiene ultimo trimestre y anno pero OJO falta mirar que mire en la tabla correcta dado que no todos las acciones estan en financials_r_i
+
+    var sql_trim = 'SELECT quarter FROM financials_r_i WHERE ticker = ' + connection.escape(user_input) + ' ORDER BY date_end DESC LIMIT 1;';
+    var sql_anno = 'SELECT year FROM financials_r_i WHERE ticker = ' + connection.escape(user_input) + ' ORDER BY date_end DESC LIMIT 1;';
+    var sql_both = sql_trim + sql_anno;
+
+    connection.query(sql_both, function(err, results) {
+	if (err) throw err;
+	var trim = results[0];
+	var anno = results[1];
+	console.log('trim = ' + trim);
+	console.log('anno = ' + anno);
+	fs.writeFile('./data/trim.json', JSON.stringify(results[0]), function (err) {if (err) throw err;});
+	fs.writeFile('./data/anno.json', JSON.stringify(results[1]), function (err) {if (err) throw err;});
+    });
+
+
+
 
 
 

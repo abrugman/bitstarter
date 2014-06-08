@@ -45,6 +45,47 @@
     <!-- Google Analytics ends ga.js -->
 
 
+    <!-- JQuery Datepicker -->
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script type="text/javascript">
+      $(function() {
+      $( "#datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "1994:2015",
+      dateFormat: "yy-mm-dd",
+      showButtonPanel: true,
+      autoSize: true,
+      constrainInput: true,
+      onClose: function( selectedDate ) {
+         $("#sid").attr('value', selectedDate);
+      }
+      });
+      });
+
+      $(function() {
+      $( "#datepickertwo" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "1994:2015",
+      dateFormat: "yy-mm-dd",
+      showButtonPanel: true,
+      autoSize: true,
+      maxDate: 0,
+      DefaultDate: -1,
+      constrainInput: true,
+      onClose: function( selectedDate ) {
+         $("#eid").attr('value', selectedDate);
+      }
+      });
+      });
+
+    </script>
+
   </head>
 
   <body>
@@ -72,6 +113,8 @@
 	  <form action="/dataquery" class="navbar-form navbar-left" role="search">
 	    <div class="form-group">
               <input name="q" type="text" class="form-control" placeholder="Search Ticker">
+	      <input name="s" type="hidden" id="sid">
+	      <input name="e" type="hidden" id="eid">
 	    </div>
 	    <button type="submit" class="btn btn-default">Submit</button>
 	  </form>
@@ -87,20 +130,51 @@
     <!-- CODE GOES HERE -->
 
 
+
+
     <!-- LOGO -->
 
     <iframe class="logo" id="extFrame" src="/logo" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 
     <!-- FOOTER -->
 
-    <div class="pie-pagina">
-    <div class="row-fluid footer">
-      <div class="span12">
-	<p>Stockety Copyright</p>
+    <!--     <div class="pie-pagina"> -->
+
+
+    <div class="footer">
+      <div class="row">
+	<div class="col-md-4">
+	    <p>Start: <input name="startdate" type="text" id="datepicker" value="1994-01-01"></p>
+	  </div>
+	  <div class="col-md-4">
+	    <p>End: <input name="enddate" type="text" id="datepickertwo"></p>
+	  </div>
+	  <div class="col-md-4">
+	    <p>Stockety Copyright</p>
+	  </div>
       </div>
     </div>
-    </div>
-    </div>
+
   </body>
+
+
+  <script type="text/javascript">
+    <!--    $("#datepickertwo").attr('value', new Date().toLocaleDateString()); -->
+    
+    $("#sid").attr('value', datepicker.value); 
+
+    var bdate = "";
+    var ana = new Date();
+    var mon = ana.getMonth()+1;
+    bdate = bdate + ana.getFullYear() + "-" + mon + "-" + ana.getDate();
+    $("#datepickertwo").attr('value', bdate );
+    
+
+
+    $("#eid").attr('value', datepickertwo.value);
+  </script>
+
+
+
 
 </html>

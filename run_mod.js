@@ -14,15 +14,20 @@ module.exports = function (tick, callback) {
 
     connection.connect();
 
-
+    console.log('ARRAY = ' + tick);
     // PARA PREVENIR INJECTIONS HACER UNA PRUEBA QUE EL TICK.LENGTH ES MENOR A SIETE Y EN UN FUTURO QUE DATES ES IGUAL A DIEZ????
 
     // For Security
-    var user_input = tick;
+    var user_input = tick[0];
+    console.log('ticker es: ' + user_input);
+    
  //   var sql = 'CALL process_data(' + connection.escape(user_input) + ', "2011-06-01", "2013-08-20")';
 // cambio abril 2014 ponr anterior y borrar siguiente en caso de danno ademas como poner today
     
-    var initialDate = "1994-01-01";
+    var initialDate = '"2012-01-01"';
+//    var initialDate = '"' + tick[1] + '"';
+//    var initialDate = tick[1];
+    console.log('initialDate es: ' + initialDate);
 
     // para fijar fecha de hoy se requiere el siguiente procedimiento
 
@@ -40,13 +45,17 @@ module.exports = function (tick, callback) {
     } 
 
     var lastDate = '"' + yyyy + '-' + mm + '-' + dd + '"';
+//    var lastDate = '"' + tick[2] + '"';
+//    var lastDate = tick[2];
+    console.log('lastDate es: ' + lastDate);
 
-    var sql = 'CALL process_data(' + connection.escape(user_input) + ', ' + initialDate + ', ' + lastDate + ')';
 
+    var sql = 'CALL process_data("' + tick[0] + '", "' + tick[1] + '", "' + tick[2] + '")';
+    console.log('SQL: ' + sql);
 
     // Llama Stored Procedure process_data para generar tables temporales
 
-//  query viejo para referencia: connection.query('CALL process_data("' + tick +'", "2011-06-01", "2013-08-20")');
+//  SIRVE     connection.query('CALL process_data("' + tick[0] +'", "2011-06-01", "2013-08-20")');
     connection.query(sql);
 
 

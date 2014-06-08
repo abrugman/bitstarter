@@ -51,8 +51,12 @@ var pbvk = "display.html";
 app.get('/dataquery', 
 	function(req, res, next) {
 	    var ticker = req.query.q;    // guarda el ticker
-	    var run_mod = require('./run_mod.js');  // ejecuta la funcion run_mod con el parametro ticker = KO
-	    run_mod(ticker, function(data) {
+	    var start = req.query.s;     // guarda fecha inicial
+	    var end = req.query.e;       // gaurda fecha final
+	    var parameters = [ticker, start, end];
+	    console.log ('Se hace un query de: ' + parameters[0] + ' desde: ' + parameters[1] + ' hasta: ' + parameters[2] + ' .'); 
+	    var run_mod = require('./run_mod.js');  // ejecuta funcion run_mod con parametro ticker
+	    run_mod(parameters, function(data) {
 //		console.log('contendio de data es: ' + data);
 		if (data != undefined) console.log ('data tiene contenido');
 		next();

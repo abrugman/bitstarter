@@ -12,8 +12,16 @@ module.exports = function (tick, callback) {
 	multipleStatements: true // BE CAREFUL HERE --> this allows for injection attcks according to node-mysql
     });
 
-    connection.connect();
+    //connection.connect();
+    connection.connect(function(error){
+	if(error){
+            console.log("run_mod.js: Couldn't connect :(    Error: " + error);
+	} else {
+            console.log("run_mod.js: Connected successfully~!");
+	}    
+    });
 
+    
     console.log('ARRAY = ' + tick);
     // PARA PREVENIR INJECTIONS HACER UNA PRUEBA QUE EL TICK.LENGTH ES MENOR A SIETE Y EN UN FUTURO QUE DATES ES IGUAL A DIEZ????
 

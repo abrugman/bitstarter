@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+  body { font: 10px sans-serif;}
+
+  path {
+      stroke: steelblue;
+      stroke-width: 2;
+      fill: none;
+  }
+
+  
+  .axis path,
+  .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+  }
+
+  .area {
+      fill: orange;
+  }
+
+</style>
+<body>
+  <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
+  <script>
+
+    var margin = {top: 20, right: 20, bottom: 20, left: 60},
+	width = 500 - margin.left - margin.right,
+	height = 250 - margin.top - margin.bottom;
+
+    var parseDate = d3.time.format("%m/%d/%y").parse;
+
+    var x = d3.time.scale()
+	.range([0, width]);
+
+    var y = d3.scale.linear()
+	.range([height, 0]);
+
+    var xAxis = d3.svg.axis()
+	.scale(x)
+	.orient("bottom");
+
+    var yAxis = d3.svg.axis()
+	.scale(y)
+	.orient("left");
+
+    var area = d3.svg.area()
+    	.x(function(d) { return x(d.date); })
+	.y0(function(d) { return y(0); })
+	.y1(function(d) { return y(d.bbg_multiple); });
+    
+    var svg = d3.select("body").append("svg")
+	.attr("width", width + margin.left + margin.right)
+	.attr("height", height + margin.top + margin.bottom)
+	.append("g")
+	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var answer = [];
+    var datar = [];
+
+    // histo receives date and multiple variation datapoint to be plotted later
+    var histo = [];
+
+    // Get the data
+    d3.json("/databbg", function(error, data) {
+
+	answer = data;
+
+	//console.log(data);
+	//console.log(answer);
+	
+	// dejar quieto i e iterar por n
+	//var i = answer.length - 1; // primer dato e.g. en 1994 
+	var n = 0; // ultimo dato e.g. en 2014 
+
+	//console.log("**** bbgh Log: answer.length = " + answer.length);
+	//console.log("**** bbgh Log: initial market cap = " + answer[answer.length-1].mkt_cap);
+	//console.log("**** bbgh Log: last market cap = " + answer[0].mkt_cap);
+	//console.log("**** bbgh Log: initial date = " + answer[answer.length-1].date);
+	//console.log("**** bbgh Log: last date = " + answer[0].date);
+	
+	for (var i = answer.length-1; i>=0; i--) {
+
+	    datar[0] = answer[i].mkt_cap;
+
+	    // TODO: ERRROR 1 y 2 se vuelven 0 despues de cierto tiempo....
+	    datar[1] = Number((( answer[0].ebitda12m - answer[i].ebitda12m ) * answer[i].multiple).toFixed(0));
+	    datar[2] = answer[i].net_debt - answer[0].net_debt;
+
+	    //  falta revisar ajustes en el calculo de EV porque grafico no es exacto
+	    //  data[3] = Number((( answer[0].multiple - answer[i].multiple ) * answer[i].ebitda12m).toFixed(0));
+
+	    datar[4] = answer[0].mkt_cap;
+
+	    //  por diferencia por el momento
+
+	    datar[3] = Number((datar[4] - datar[0] - datar[1] - datar[2]).toFixed(0));
+
+	    // poblar histo
+	    histo.push({"date":answer[n].date,"bbg_multiple":datar[3]});
+	    
+	    //console.log("**** bbgh Log: datar = " + datar + " @ date = " + answer[i].date + " i = " + i + " id = " + answer[i].id + " n = " + n + " datar[1]= " + datar[1] + " debt 0 = " + answer[0].net_debt + " debt i = " + answer[i].net_debt + " date histo = " + answer[i].date + " bbg_multiple = " + datar[3]);
+	    
+	    // borrar datar 
+	    datar = [];
+	    n = n + 1;
+	}
+
+	//console.log(histo);
+	
+	histo.forEach(function(d) {
+	    d.date = parseDate(d.date);
+	    d.bbg_multiple = +d.bbg_multiple;
+	});
+
+	// Scale the range of the data
+	x.domain(d3.extent(histo, function(d) { return d.date; }));
+	y.domain([d3.min(histo, function(v) { return v.bbg_multiple; }) , d3.max(histo, function(d) { return d.bbg_multiple; })]);
+	
+	// Add the area path
+	svg.append("path")
+	    .attr("class", "area") 
+	    .attr("d", area(histo));
+
+	// Add the X Axis
+	svg.append("g")
+	    .attr("class", "x axis")
+	    .attr("transform", "translate(0," + y(0) + ")")
+	    .call(xAxis);
+
+	// Add the Y Axis
+	svg.append("g")
+	    .attr("class", "y axis")
+	    .call(yAxis);
+
+	// Add the text label for theY Axis
+	svg.append("text")
+	    .attr("transform", "rotate(-90, -66, 0) translate(-125)")
+	    .attr("y", 6)
+	    .attr("dy", ".71em")
+	    .style("text-anchor", "end")
+	    .text("Multiple Variation ($million)");
+    });
+
+  </script>
+</body>
+</html>

@@ -229,6 +229,15 @@ app.get('/mktcap', function(req, res){
 });
 
 
+/* building blocks history charts */
+
+var bbga_history = "bbg_history.html";
+app.get('/bbg_history', function(req, res){
+    console.log ('Grafico de bbg_history ha sido llamado.');
+   res.send(fs.readFileSync(bbga_history).toString());
+});
+
+
 
 
 

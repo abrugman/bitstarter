@@ -69,7 +69,7 @@
 
 	answer = data;
 
-	//console.log(data);
+	console.log(data);
 	//console.log(answer);
 	
 	// dejar quieto i e iterar por n
@@ -81,6 +81,11 @@
 	//console.log("**** bbgh Log: last market cap = " + answer[0].mkt_cap);
 	//console.log("**** bbgh Log: initial date = " + answer[answer.length-1].date);
 	//console.log("**** bbgh Log: last date = " + answer[0].date);
+
+	//Para calcular historia multiplo por segun metodo. o=inicial, x=final
+	var EVEBITDAo=0;
+	var EVEBITDAx=0;
+	var EBITDAx=0;
 	
 	for (var i = answer.length-1; i>=0; i--) {
 
@@ -95,12 +100,17 @@
 
 	    datar[4] = answer[0].mkt_cap;
 
-	    //  por diferencia por el momento
+	    // Metodo 1 (a11n inicial): por diferencia - pero cual es el tratamiento de dividendos?
+	    //datar[3] = Number((datar[4] - datar[0] - datar[1] - datar[2]).toFixed(0));
 
-	    datar[3] = Number((datar[4] - datar[0] - datar[1] - datar[2]).toFixed(0));
-
+	    // Metodo 2 (segun kpmg paper): vMULTIPLE(i)=EBITDAx*(EVEBITDAx-EVEBITDAo)
+	    EVEBITDAo = answer[answer.length-1].multiple;
+	    EVEBITDAx = answer[i].multiple;
+	    EBITDAx = answer[i].ebitda12m;
+	    datar[3] = Number(EBITDAx * (EVEBITDAx-EVEBITDAo));
+	    
 	    // poblar histo
-	    histo.push({"date":answer[n].date,"bbg_multiple":datar[3]});
+	    histo.push({"date":answer[i].date,"bbg_multiple":datar[3]});
 	    
 	    //console.log("**** bbgh Log: datar = " + datar + " @ date = " + answer[i].date + " i = " + i + " id = " + answer[i].id + " n = " + n + " datar[1]= " + datar[1] + " debt 0 = " + answer[0].net_debt + " debt i = " + answer[i].net_debt + " date histo = " + answer[i].date + " bbg_multiple = " + datar[3]);
 	    

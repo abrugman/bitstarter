@@ -23,8 +23,8 @@ body {
 <script>
 
 var margin = {top: 20, right: 20, bottom: 20, left: 60},
-    width = 500 - margin.left - margin.right,
-    height = 250 - margin.top - margin.bottom;
+    width = screen.width - margin.left - margin.right,
+    height = (screen.width/2) - margin.top - margin.bottom;
 
 var parseDate = d3.time.format("%m/%d/%y").parse;
 

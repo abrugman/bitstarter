@@ -109,22 +109,51 @@ function process(vector) {
 
 process(data);
 
-
+// a11n januery2021 - original size, changed to makeit responsive 
+//var margin = {top: 20, right: 20, bottom: 20, left: 60},
+//    width = 500 - margin.left - margin.right,
+//    barHeight = 42,
+//    height= 250 - margin.top - margin.bottom;
+    
 var margin = {top: 20, right: 20, bottom: 20, left: 60},
-    width = 500 - margin.left - margin.right,
-    barHeight = 42,
-    height= 250 - margin.top - margin.bottom;
+    width = screen.width - margin.left - margin.right,
+    barHeight = width*0.1,
+    height= (screen.width/2) - margin.top - margin.bottom;
+
+
+// a11n januery2021 - original size, changed to makeit responsive 
+//var x = d3.scale.linear()
+//    .domain([0, d3.max(data_acum)])
+//    .range([0, width-100]);
+    
+//var x = d3.scale.linear()
+//    .domain([0, d3.max(data_acum)])
+//    .range([0, width-(screen.width/5)]);
 
 var x = d3.scale.linear()
     .domain([0, d3.max(data_acum)])
-    .range([0, width-100]);
+    .range([0, width-(width*0.238095)]);
+
+    
+// a11n januery2021 - original size, changed to makeit responsive 
+//var chart = d3.select(".chart")
+//    .attr("width", width)
+//    .attr("height", 250 - margin.top - margin.bottom);
+    
+//var chart = d3.select(".chart")
+//    .attr("width", width)
+//    .attr("height", (screen.width/2) - margin.top - margin.bottom);
 
 var chart = d3.select(".chart")
-    .attr("width", width)
-    .attr("height", 250 - margin.top - margin.bottom);
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height);
+
+    
 
 var acum = [100, 100+ac1*x(1), 100+ac2*x(1), 100+ac3*x(1), 100];
 
+
+    
 var bar = chart.selectAll("g")
     .data(barra)
   .enter().append("g")
@@ -142,9 +171,14 @@ bar.append("text")
 					 else return data[i];
 			});
 
+    // a11n januery2021 - original size, changed to makeit responsive 
+//var y = d3.scale.ordinal()
+//    .domain(nom)
+//    .rangeBands([ 0 , (height - 2) ]);
+    
 var y = d3.scale.ordinal()
     .domain(nom)
-    .rangeBands([ 0 , (height - 2) ]);
+    .rangeBands([ 0 , (height - screen.width*0.004) ]);
 
 
 var yAxis = d3.svg.axis()
@@ -159,6 +193,7 @@ chart.append("g")
     .attr("transform", "translate(100," + 0 + ")")
     .call(yAxis);
 
+    
 // var inibar = d3.select("rect").attr("class", "new");
 
 

@@ -3,13 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Stockety</title>
+    <!-- <meta name ="viewport" content ="width=device-width, initial-scale=1.0"> -->
     <meta name ="viewport" content ="width=device-width, initial-scale=1.0">
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
-
-
 
     <!-- old links -->
 
@@ -39,7 +37,7 @@
 	    <span class="sr-only">Toggle navigation</span>
 	    <span class="icon-bar"></span>
 	    <span class="icon-bar"></span>
-	<span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
 	  </button>
 	  <a class="navbar-brand" href="/">Stockety</a>
 	</div>
@@ -61,22 +59,14 @@
     </nav>
 
 
-    <!-- DECLARACION DE VARIABLES 
-
-    <script type="text/javascript">
-
-    </script> -->
-
-    <!-- CODE GOES HERE -->
-
-<!-- toolbar -->
+    <!-- toolbar -->
 
     <div class="row">
       <div class="col-md-3">
         <p id="empresa"></p>
       </div>
       <div class="col-md-3">
-	  <p id="precio"></p>
+	<p id="precio"></p>
       </div>
       <div class="col-md-2">
 	<p id="trimestre"></p>
@@ -98,100 +88,127 @@
     <script type="text/javascript">
 
       $('#uno').click(function() {
-      console.log("You clicked on the first button.");
-      $('#building').attr('src', '/evrev');
-      $('#evebi').attr('src', '/eve');
-      $('#exam').attr('src', '/peg');
-      $('#pbvbi').attr('src', '/pbvg');
+	  console.log("You clicked on the first button.");
+	  $('#building').attr('src', '/evrev');
+	  $('#evebi').attr('src', '/eve');
+	  $('#exam').attr('src', '/peg');
+	  $('#pbvbi').attr('src', '/pbvg');
       });
 
       $('#dos').click(function() {
-      console.log("You clicked on the second button.");
-      $('#building').attr('src', '/bbg');
-      $('#evebi').attr('src', '/mktcap');
-      $('#exam').attr('src', '/capnd');
-      $('#pbvbi').attr('src', '/ebitda');
+	  console.log("You clicked on the second button.");
+	  $('#building').attr('src', '/bbg');
+	  $('#evebi').attr('src', '/mktcap');
+	  $('#exam').attr('src', '/capnd');
+	  $('#pbvbi').attr('src', '/ebitda');
       });
 
       $('#tres').click(function() {
-      console.log("You clicked on the third button.");
-      $('#building').attr('src', '/ev');
-      $('#evebi').attr('src', '/logo');
-      $('#exam').attr('src', '/bbg');
-      $('#pbvbi').attr('src', '/logo');
+	  console.log("You clicked on the third button.");
+	  $('#building').attr('src', '/ev');
+	  $('#evebi').attr('src', '/logo');
+	  $('#exam').attr('src', '/bbg');
+	  $('#pbvbi').attr('src', '/logo');
       });
 
       $('#cuatro').click(function() {
-      console.log("You clicked on the fourth button.");
-      $('#building').attr('src', '/bbg_history');
-      $('#evebi').attr('src', '/bbg');
-      $('#exam').attr('src', '/ebitda');
-      $('#pbvbi').attr('src', '/mktcap');
+	  console.log("You clicked on the fourth button.");
+	  $('#building').attr('src', '/bbg_history');
+	  $('#evebi').attr('src', '/bbg');
+	  $('#exam').attr('src', '/ebitda');
+	  $('#pbvbi').attr('src', '/mktcap');
       });
 
       var foo = [];
       $.getJSON('/nomb', function(data) {
-      foo = data;
-      $('#empresa').text(foo[0].name); 
+	  foo = data;
+	  $('#empresa').text(foo[0].name); 
       });
 
       var poo = [];
       $.getJSON('/precio', function(data) {
-      poo = data;
-      $('#precio').text('Last Price: $' + poo[0].close); 
+	  poo = data;
+	  $('#precio').text('Last Price: $' + poo[0].close); 
       });
 
       var trimes = [];
       $.getJSON('/tri', function(data) {
-      trimes = data;
+	  trimes = data;
       });
 
       var anno = [];
       $.getJSON('/an', function(data) {
-      anno = data;
-      $('#trimestre').text('Last Filing: ' + trimes[0].quarter + 'Q' + anno[0].year); 
+	  anno = data;
+	  $('#trimestre').text('Last Filing: ' + trimes[0].quarter + 'Q' + anno[0].year); 
       });
 
       var last_date = "";
       var last_da = [];
       $.getJSON('/ldate', function(data) {
-      last_da = data;
-      var dummy = last_da[0].date
-      last_date = dummy.replace('T00:00:00.000Z', '');
-      $('#lastdate').text(last_date);
+	  last_da = data;
+	  var dummy = last_da[0].date
+	  last_date = dummy.replace('T00:00:00.000Z', '');
+	  $('#lastdate').text(last_date);
       });
 
 
     </script>
 
 
+<!-- for debug only to view screen sizes
+	 
+	 <h3>Your Screen:</h3>
+
+	 <div id="demo"></div>
+	 
+
+	 <script>
+	   var txt = "";
+	   txt += "<p>Total width/height: " + screen.width + "*" + screen.height + "</p>";
+	   txt += "<p>Available width/height: " + screen.availWidth + "*" + screen.availHeight + "</p>";
+	   txt += "<p>Color depth: " + screen.colorDepth + "</p>";
+	   txt += "<p>Color resolution: " + screen.pixelDepth + "</p>";
+	   document.getElementById("demo").innerHTML = txt;
+	 </script>
+-->
 
 
 
+    <!-- four charts original
 
+    <iframe class="building" id="building" src="/evrev" marginwidth="0" marginheight="0" scrolling="no" class="img-responsive"></iframe>
 
-<!-- four charts -->
+    <iframe class="evebi" id="evebi" src="/eve" marginwidth="0" marginheight="0" scrolling="no" class="img-responsive"></iframe> 
 
-<iframe class="building" id="building" src="/evrev" marginwidth="0" marginheight="0" scrolling="no" class="img-responsive"></iframe>
+    <iframe class="exam" id="exam" src="/peg" marginwidth="0" marginheight="0" scrolling="no" class="img-responsive"></iframe>
 
-<iframe class="evebi" id="evebi" src="/eve" marginwidth="0" marginheight="0" scrolling="no" class="img-responsive"></iframe> 
-
-<iframe class="exam" id="exam" src="/peg" marginwidth="0" marginheight="0" scrolling="no" class="img-responsive"></iframe>
-
-<iframe class="pbvbi" id="pbvbi" src="/pbvg" marginwidth="0" marginheight="0" scrolling="no" class="img-responsive"></iframe>
-
-
-
+    <iframe class="pbvbi" id="pbvbi" src="/pbvg" marginwidth="0" marginheight="0" scrolling="no" class="img-responsive"></iframe>
+    -->
+    
+    <!-- four charts -->
+    <!-- <div class="img-responsive"> width="500" height="250" -->
+      <div class="graficos-container">
+	<iframe id="building" src="/evrev" frameborder="no" scrolling="no" class="grafico"></iframe>
+      </div>
+      <div class="graficos-container">
+	<iframe id="evebi" src="/eve" frameborder="no" scrolling="no" class="grafico"></iframe> 
+      </div>
+      <div class="graficos-container">
+	<iframe id="exam" src="/peg" frameborder="no" scrolling="no" class="grafico"></iframe>
+      </div>
+      <div class="graficos-container">
+	<iframe id="pbvbi" src="/pbvg" frameborder="no" scrolling="no" class="grafico"></iframe>
+      </div>
 
 
     <!-- Not crucial -->
     <div class="pie-pagina">
-    <div class="row-fluid footer">
-      <div class="span12">
-	<p>Stockety Copyright</p>
+      <div class="row-fluid footer">
+	<div class="span12">
+	  <p>Stockety Copyright</p>
+	</div>
       </div>
     </div>
-    </div>
-    </div>
-  </body>
+</div>
+</body>
 </html>

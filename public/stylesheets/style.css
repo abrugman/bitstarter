@@ -202,8 +202,8 @@
       left: 60%;
       margin-left: -100px;
       margin-top: -20px;
-      height: 40%;
-      width: 40%;
+      height: 100%;
+      width: 100%;
       border: 0px;
       }
 
@@ -213,8 +213,8 @@
       left: 60%;
       margin-left: -100px;
       margin-top: 240px;
-      height: 40%;
-      width: 40%;
+      height: 100%;
+      width: 100%;
       border: 0px;
       }
 
@@ -228,4 +228,20 @@
       width: 40%;
       border: 0px;
       }
+
+      .graficos-container {
+	  position: relative;
+	  padding-bottom: 50%;
+	  width: 100%;
+	  overflow: hidden;
+      }
+
+      .grafico {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+      }
+
 

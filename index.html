@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Stockety</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+      -->
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
@@ -35,9 +36,9 @@
       _gaq.push(['_trackPageview']);
 
       (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
     </script>
@@ -53,35 +54,35 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script type="text/javascript">
       $(function() {
-      $( "#datepicker" ).datepicker({
-      changeMonth: true,
-      changeYear: true,
-      yearRange: "1994:2020",
-      dateFormat: "yy-mm-dd",
-      showButtonPanel: true,
-      autoSize: true,
-      constrainInput: true,
-      onClose: function( selectedDate ) {
-         $("#sid").attr('value', selectedDate);
-      }
-      });
+	  $( "#datepicker" ).datepicker({
+	      changeMonth: true,
+	      changeYear: true,
+	      yearRange: "1994:2020",
+	      dateFormat: "yy-mm-dd",
+	      showButtonPanel: true,
+	      autoSize: true,
+	      constrainInput: true,
+	      onClose: function( selectedDate ) {
+		  $("#sid").attr('value', selectedDate);
+	      }
+	  });
       });
 
       $(function() {
-      $( "#datepickertwo" ).datepicker({
-      changeMonth: true,
-      changeYear: true,
-      yearRange: "1994:2020",
-      dateFormat: "yy-mm-dd",
-      showButtonPanel: true,
-      autoSize: true,
-      maxDate: 0,
-      DefaultDate: -1,
-      constrainInput: true,
-      onClose: function( selectedDate ) {
-         $("#eid").attr('value', selectedDate);
-      }
-      });
+	  $( "#datepickertwo" ).datepicker({
+	      changeMonth: true,
+	      changeYear: true,
+	      yearRange: "1994:2020",
+	      dateFormat: "yy-mm-dd",
+	      showButtonPanel: true,
+	      autoSize: true,
+	      maxDate: 0,
+	      DefaultDate: -1,
+	      constrainInput: true,
+	      onClose: function( selectedDate ) {
+		  $("#eid").attr('value', selectedDate);
+	      }
+	  });
       });
 
     </script>
@@ -102,7 +103,7 @@
 	    <span class="sr-only">Toggle navigation</span>
 	    <span class="icon-bar"></span>
 	    <span class="icon-bar"></span>
-	<span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
 	  </button>
 	  <a class="navbar-brand" href="/">Stockety</a>
 	</div>
@@ -141,9 +142,9 @@
     <!--     <div class="pie-pagina"> -->
 
 
-    <div class="footer">
-      <div class="row">
-	<div class="col-md-4">
+      <div class="footer">
+	<div class="row">
+	  <div class="col-md-4">
 	    <p>Start: <input name="startdate" type="text" id="datepicker" value="2005-01-01"></p>
 	  </div>
 	  <div class="col-md-4">
@@ -152,8 +153,8 @@
 	  <div class="col-md-4">
 	    <p>Stockety - v0.0.3 (beta - Desktop View)</p>
 	  </div>
+	</div>
       </div>
-    </div>
 
   </body>
 
@@ -174,7 +175,21 @@
     $("#eid").attr('value', datepickertwo.value);
   </script>
 
-
+  <!-- Desktop View -->
+  <!-- https://stackoverflow.com/questions/24498517/how-to-show-desktop-version-on-mobile-screens-in-bootstrap-3 
+    
+  <script type="text/javascript">
+    $(window).resize(function() {
+	var mobileWidth =  (window.innerWidth > 0) ? 
+            window.innerWidth : 
+            screen.width;
+	var viewport = (mobileWidth > 360) ?
+            'width=device-width, initial-scale=1.0' :
+            'width=1200';
+	$("meta[name=viewport]").attr('content', viewport);
+    }).resize();      
+  </script>
+  -->
 
 
 </html>

@@ -133,6 +133,21 @@ module.exports = function (tick, callback) {
 
 
 
+    // obtiene la informacion de GOODWILLASSETS y la guarda en archivo goodassets.json en directorio ./data/ 
+
+    var ga = [];  
+
+    connection.query('SELECT DATE_FORMAT(date, "%m/%d/%y") AS "date", goodwill, assets, ratio FROM goodasset', function(err, rows) {
+	if (err) throw err;
+	fs.writeFile('./data/goodassets.json', JSON.stringify(rows), function (err) {if (err) throw err;});
+	ga = JSON.stringify(rows);
+	console.log('El archivo goodassets.json ha sido generado y los datos han sido guardados en una variable');
+//	callback(pe);
+    });
+
+
+
+    
     // obtiene el nombre de la empresa consultada y lo guarda en archivo nombre.json en directorio ./data/ fecha mayo 23 2014 
 
     var nombre = [];  

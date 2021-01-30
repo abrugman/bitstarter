@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<html>
-<head>
 <meta charset="utf-8">
 <style>
 
@@ -13,23 +11,20 @@ body {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
-  stroke-width: 1px;
 }
 
 .x.axis path {
-  display: yes; 
-  stroke-width: 1px;
+  display: none;
 }
 
 .line {
   fill: none;
-  stroke: black;
-  stroke-width: 3px;
+  stroke: steelblue;
+  stroke-width: 2.5px;
 }
 
 </style>
-</head>
-<body marginwidth="0" marginheight="0">
+<body>
 <script src="http://d3js.org/d3.v3.js"></script>
 <script>
 
@@ -65,28 +60,37 @@ var svg = d3.select("body").append("svg")
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-  
-d3.json("/dataeve", function(error, data) {
 
-  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
+d3.json("/datagooasset", function(error, data) {
 
-  data.forEach(function(d) {  
-      d.date = parseDate(d.date);
+// modificar data para quitarle las columnas que no necesitamos
+
+data.forEach(function(v){ delete v.ratio });
+//data.forEach(function(v){ delete v.ebitda12m });
+//data.forEach(function(v){ delete v.multiple });
+var datamod = data;
+console.log(datamod);
+
+  color.domain(d3.keys(datamod[0]).filter(function(key) { return key !== "date"; }));
+
+  datamod.forEach(function(d) {
+    d.date = parseDate(d.date);
   });
 
   var cities = color.domain().map(function(name) {
     return {
       name: name,
-      values: data.map(function(d) {
+      values: datamod.map(function(d) {
         return {date: d.date, temperature: +d[name]};
       })
     };
   });
 
-  x.domain(d3.extent(data, function(d) { return d.date; }));
+  x.domain(d3.extent(datamod, function(d) { return d.date; }));
 
   y.domain([
-    d3.min(cities, function(c) { return d3.min(c.values, function(v) { return v.temperature; }); }),
+//    d3.min(cities, function(c) { return d3.min(c.values, function(v) { return v.temperature; }); }),
+    Math.min(0, d3.min(cities, function(c) { return d3.min(c.values, function(v) { return v.temperature; }); })),
     d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.temperature; }); })
   ]);
 
@@ -99,11 +103,11 @@ d3.json("/dataeve", function(error, data) {
       .attr("class", "y axis")
       .call(yAxis)
     .append("text")
-      .attr("transform", "rotate(-90, -50, 0) translate(-125)")
+      .attr("transform", "rotate(-90, -66, 0) translate(-125)")
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("EVEBITDA (x)");
+      .text("($) million");
 
   var city = svg.selectAll(".city")
       .data(cities)
@@ -119,11 +123,13 @@ d3.json("/dataeve", function(error, data) {
       .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
       .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
       .attr("x", 3)
-      .attr("dy", ".71em")
+      .attr("dy", ".35em")
       .text(function(d) { return d.name; });
+
 });
 
-
 </script>
+
+
 </body>
 </html>

@@ -126,6 +126,14 @@ app.get('/databbg', function(req, res){
    res.send(fs.readFileSync(databbga).toString());
 });
 
+/* serves .data/goodassets.json file that is requested in goodasset.html iframe en display.html */
+
+var datagoas = "./data/goodassets.json";
+app.get('/datagooasset', function(req, res){
+    console.log ('Datos de goodasset han sido servidos.');
+   res.send(fs.readFileSync(datagoas).toString());
+});
+
 /* serves .data/nombre.json file that has name of companyto be shown in display.html */
 
 var nom = "./data/nombre.json";
@@ -227,6 +235,13 @@ app.get('/mktcap', function(req, res){
     console.log ('Grafico de mktcap ha sido llamado.');
    res.send(fs.readFileSync(mktcap).toString());
 });
+
+var goodasset = "goodasset.html";
+app.get('/goodasset', function(req, res){
+    console.log ('Grafico de goodasset ha sido llamado.');
+   res.send(fs.readFileSync(goodasset).toString());
+});
+
 
 
 /* building blocks history charts */

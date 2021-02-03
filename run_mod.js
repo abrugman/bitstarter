@@ -146,6 +146,55 @@ module.exports = function (tick, callback) {
     });
 
 
+    // obtiene la informacion de EQUITY y la guarda en archivo equity.json en directorio ./data/ 
+
+    var eq = [];  
+
+    connection.query('SELECT DATE_FORMAT(date, "%m/%d/%y") AS "date", equity FROM eqdiv', function(err, rows) {
+	if (err) throw err;
+	fs.writeFile('./data/equity.json', JSON.stringify(rows), function (err) {if (err) throw err;});
+	eq = JSON.stringify(rows);
+	console.log('El archivo equity.json ha sido generado y los datos han sido guardados en una variable');
+//	callback(pe);
+    });
+    
+
+    // obtiene la informacion de DIVIDENDS y la guarda en archivo divs.json en directorio ./data/ 
+
+    var di = [];  
+
+    connection.query('SELECT DATE_FORMAT(date, "%m/%d/%y") AS "date", dividends FROM divi', function(err, rows) {
+	if (err) throw err;
+	fs.writeFile('./data/divs.json', JSON.stringify(rows), function (err) {if (err) throw err;});
+	di = JSON.stringify(rows);
+	console.log('El archivo divs.json ha sido generado y los datos han sido guardados en una variable');
+//	callback(pe);
+    });
+
+    // obtiene la informacion de DIVIDENDSACCUMULADOS y la guarda en archivo accumdivs.json en directorio ./data/ 
+
+    var da = [];  
+
+    connection.query('SELECT DATE_FORMAT(date, "%m/%d/%y") AS "date", accumdivs FROM eqdiv', function(err, rows) {
+	if (err) throw err;
+	fs.writeFile('./data/accumdivs.json', JSON.stringify(rows), function (err) {if (err) throw err;});
+	da = JSON.stringify(rows);
+	console.log('El archivo accumdivs.json ha sido generado y los datos han sido guardados en una variable');
+//	callback(pe);
+    });
+
+    
+    // obtiene la informacion de EQUITYDIVIDENDS y la guarda en archivo eqdivs.json en directorio ./data/ 
+
+    var ed = [];  
+
+    connection.query('SELECT DATE_FORMAT(date, "%m/%d/%y") AS "date", equity, dividends, accumdivs FROM eqdiv', function(err, rows) {
+	if (err) throw err;
+	fs.writeFile('./data/eqdivs.json', JSON.stringify(rows), function (err) {if (err) throw err;});
+	ed = JSON.stringify(rows);
+	console.log('El archivo eqdivs.json ha sido generado y los datos han sido guardados en una variable');
+//	callback(pe);
+    });
 
     
     // obtiene el nombre de la empresa consultada y lo guarda en archivo nombre.json en directorio ./data/ fecha mayo 23 2014 

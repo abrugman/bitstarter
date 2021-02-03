@@ -134,6 +134,42 @@ app.get('/datagooasset', function(req, res){
    res.send(fs.readFileSync(datagoas).toString());
 });
 
+/* serves .data/equity.json file that is requested in equity.html iframe en display.html */
+
+var dataequity = "./data/equity.json";
+app.get('/dataequity', function(req, res){
+    console.log ('Datos de equity han sido servidos.');
+   res.send(fs.readFileSync(dataequity).toString());
+});
+
+/* serves .data/eqdivs.json file that is requested in eqaccumdiv.html iframe en display.html */
+
+var dataequitydiv = "./data/eqdivs.json";
+app.get('/dataeqdiv', function(req, res){
+    console.log ('Datos de eqdivs han sido servidos.');
+   res.send(fs.readFileSync(dataequitydiv).toString());
+});
+
+
+/* serves .data/eqdivs.json file that is requested in accumdiv.html iframe en display.html */
+
+var datadivaccum = "./data/accumdivs.json";
+app.get('/datadivaccum', function(req, res){
+    console.log ('Datos de accumdivs han sido servidos.');
+   res.send(fs.readFileSync(datadivaccum).toString());
+});
+
+
+/* serves .data/divs.json file that is requested in divs.html iframe en display.html */
+
+var datadivs = "./data/divs.json";
+app.get('/datadiv', function(req, res){
+    console.log ('Datos de divs han sido servidos.');
+   res.send(fs.readFileSync(datadivs).toString());
+});
+
+
+
 /* serves .data/nombre.json file that has name of companyto be shown in display.html */
 
 var nom = "./data/nombre.json";
@@ -241,6 +277,31 @@ app.get('/goodasset', function(req, res){
     console.log ('Grafico de goodasset ha sido llamado.');
    res.send(fs.readFileSync(goodasset).toString());
 });
+
+var equi = "equity.html";
+app.get('/equity', function(req, res){
+    console.log ('Grafico de equity ha sido llamado.');
+   res.send(fs.readFileSync(equi).toString());
+});
+
+var eqacdiv = "eqaccumdiv.html";
+app.get('/eqacdiv', function(req, res){
+    console.log ('Grafico de equity y dividendos acumulados ha sido llamado.');
+   res.send(fs.readFileSync(eqacdiv).toString());
+});
+
+var divsaccum = "divsaccum.html";
+app.get('/divsaccum', function(req, res){
+    console.log ('Grafico de dividendos acumulados ha sido llamado.');
+   res.send(fs.readFileSync(divsaccum).toString());
+});
+
+var divs = "divs.html";
+app.get('/divs', function(req, res){
+    console.log ('Grafico de dividendos ha sido llamado.');
+   res.send(fs.readFileSync(divs).toString());
+});
+
 
 
 

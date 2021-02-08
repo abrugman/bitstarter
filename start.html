@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Stockety</title>
+    <title>About</title>
     <meta name ="viewport" content ="width=device-width, initial-scale=1.0">
 
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -42,13 +42,6 @@
 	
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	  
-	  <form action="/dataquery" class="navbar-form navbar-left" role="search">
-	    <div class="form-group">
-              <input name="q" type="text" class="form-control" placeholder="Search Ticker">
-	    </div>
-	    <button type="submit" class="btn btn-default">Submit</button>
-	  </form>
 	  <ul class="nav navbar-nav navbar-right">
 	    <li><a href="/start">About</a></li>
 	  </ul>
@@ -59,84 +52,12 @@
     <!-- CODE GOES HERE -->
 
     <div class="container">
-      <!-- www.google.com/fonts/specimen/Ubuntu -->
-      <!-- www.google.com/fonts/specimen/Ubuntu#pairings -->
-      <div class="row heading">
-	<div class="col-md-12">
-	  <h1>Stockety</h1>
-	</div>
-      </div>
-      <div class="row subheading">
-	<div class="col-md-12">
-	  <!-- special typography from Bootstrap for lead paragraph. -->
-	  <!-- http://twitter.github.io/bootstrap/base-css.html#typographt -->
-	  <p class="lead">Analytical Finance</p>
-	</div>
-      </div>
-      <div class="row pitch">
-	<div class="col-md-5 col-md-offset-1 copy" style="padding-top: 0px;">
-	  <p>Stockety helps investors make more informed investment decisions on equity markets. Our algorithms calculate different historical valuation multiples and statistics, which are then displayed for interactive visualisation. We concentrate in EV/EBITDA, EV/Revenues, P/E and P/BV multiples. We will start covering the 30 stocks of the Dow Jones Industrial Average as of June 2013, and we would incorporate gradually further stocks from other indexes. Our goal is to cover most of the equity spectrum of developed capital markets and some emerging markets, and to incorporate further types of analysis, such as peer multiple comparisons.
-	  </p>  
-	</div>
-
-	<!-- We define a new 'actions' div to contain statistics, order, and share buttons.-->
-	<div class="col-md-5 actions">
-	  <div class="row">
-	    <div class="col-md-8 col-md-offset-2">
-	      <div class="row statistics">
-		<h3>Beta v1.0.1</h3>
-		<p>Stocks covered from Dow Jones Industrial Average</p>
-	      </div> 
-	    </div>
-	    <div class="row">  
-	      <div class="col-md-10 col-md-offset-1">
-		<div class="thermometer progress active">
-		  <div class="progress-bar progress-bar-success" style="width: 20%;"></div>
-		  <div class="progress-bar progress-bar-warning" style="width: 80%;"></div>
-		</div>
-	      </div>  
-	    </div>
-	    <div class="row">
-	      <div class="col-md-6 col-md-offset-3 order">
-		<!-- Standard Bootstrap button. -->
-		<!-- http://twitter.github.io/bootstrap/base-css.html#buttons -->
-		<!-- <button class="btn btn-success btn-large">Preorder</button> -->
-		<a class="coinbase-button" 
-		   data-code="645b70a1c5dc143ca65e60c898cc6f5c" 
-		   data-button-style="custom_large"
-		   data-button-text="Subscribe With Bitcoin"
-		   href="https://coinbase.com/checkouts/645b70a1c5dc143ca65e60c898cc6f5c">Contribute with Bitcoin</a>
-		<script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
-	      </div>
-	    </div>
-	    <div class="row">
-	      <div class="col-md-8 col-md-offset-2 social">
-		<!-- AddThis Button BEGIN -->
-		<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-		  <a class="addthis_button_facebook"></a>
-		  <a class="addthis_button_twitter"></a>
-		  <a class="addthis_button_google_plusone_share"></a>
-		  <a class="addthis_button_email"></a>
-		  <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-		</div>
-		<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5200f5233ead1e04"></script>
-		<!-- AddThis Button END -->
-	      </div>
-	    </div>
-	  </div>
-	</div>	  
-      </div>
-
-      <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/text-align -->
-      <!-- http://twitter.github.io/bootstrap/base-css.html#images -->
-      <!-- http://placehold.it -->
-      
       <!--FAQ -->
-
       <div class="row faq">
 	<div class="col-md-10 col-md-offset-1">
 	  <h3>FAQ</h3>
 	  <div class="panel-group" id="panel-group">
+
 	    <div class="panel panel-default">
 	      <div class="panel-heading">
 		<a class="panel-group toggle" data-toggle="collapse"
@@ -154,130 +75,56 @@
 	    <div class="panel panel-default">
 	      <div class="panel-heading">
 		<a class="panel-group toggle" data-toggle="collapse"
-		   data-parent="#accordion2" href="#collapseTwo">
-		  What are your key differences?
-		</a>
-	      </div>
-	      <div id="collapseTwo" class="panel-collapse collapse">
-		<div class="panel-body">
-		  We are not a substitute of financial data providers and webpages. On the contrary, our goal is to contribute with analytical financial tools. We differentiate ourselves from current data providers and financial websites in three fronts: Quality of its database, detail in its analysis, and innovative charts. In addition, our purpose is to provide a valuable user experience with high quality visual design, without excessive advertisement, nor intrusive emails or publicity to potential subscribers. In a few words, we are an analytical tool rather than a descriptive a website.		
-		</div>
-	      </div>
-	    </div>
-	    
-	    <div class="panel panel-default">
-	      <div class="panel-heading">
-		<a class="panel-group toggle" data-toggle="collapse"
-                   data-parent="#accordion3" href="#collapseThree">
-                  Which are the sources of your data?
-		</a>
-              </div>
-              <div id="collapseThree" class="panel-collapse collapse">
-		<div class="panel-body">
-		  Most public information about historical valuation multiples is either scarce, or available only to subscribers of a given service or institution. All of our data is of public domain. Our database, which is being constructed with public information, would start as of 1994, year in which electronic filings on EDGAR can be retrieved. Historical stock prices are being downloaded from YahooFinance.
-		</div>
-              </div>
-            </div>
-
-	    <div class="panel panel-default">
-	      <div class="panel-heading">
-		<a class="panel-group toggle" data-toggle="collapse"
-                   data-parent="#accordion4" href="#collapseFour">
-                  Why contribute via Bitcoin to the project?
-		</a>
-              </div>
-              <div id="collapseFour" class="panel-collapse collapse">
-		<div class="panel-body">
-                  Bitcoin for stockety is being implemented so please do not contribute yet. The initial stage of the company is free of charge to all. In case this website finds enough traction and generates traffic that implies greater technological tasks and resources, one would expect to obtain revenues to fund operation from a small subscription fee, amongst others. In such a moment, those who contribute with one (1) bitcoin or more in this initial stage, will have free access to this site, even if we start charging for subscriptions on a later stage.
-		</div>
-              </div>
-            </div>
-
-
-	    <div class="panel panel-default">
-	      <div class="panel-heading">
-		<a class="panel-group toggle" data-toggle="collapse"
-                   data-parent="#accordion5" href="#collapseFive">
-                  Valuation multiples are sufficient to invest in public equities?
-		</a>
-              </div>
-              <div id="collapseFive" class="panel-collapse collapse">
-		<div class="panel-body">
-                  No. It is well known that the value of a stock is a function of its future cash flows to equity and an appropiate discount factor that reflects their risk. Therefore, forecasting a company' financials is key for gaining visibility on fundamental value. However, history provides valuable information for forecasting reasonable assumptions, and here is where we contribute. We provide historical insight to check present and forward data. As well, although historical valuation multiples may be useful to some investors when analyzing stocks, it may be the case that they are not valuable to others. Multiples are difficult to control from inside management, and their magnitude over time is exposed to macroeconomic, technological and political risk, among others. For instance, buying a particular stock when its multiples are at a lower level than their historical averages does not guarantee that in the future such multiples would expand. Therefore, it is recommended to search and analyze information from other sources before making investment decisions. As well, you should at least study company financials and filings, shareholder reports, management, shareholder base, understand the industry in which the company competes, its evolution, and future prospects.
-		</div>
-              </div>
-            </div>
-
-
-	    <div class="panel panel-default">
-	      <div class="panel-heading">
-		<a class="panel-group toggle" data-toggle="collapse"
                    data-parent="#accordion6" href="#collapseSix">
                   Your data is accurate?
 		</a>
               </div>
               <div id="collapseSix" class="panel-collapse collapse">
 		<div class="panel-body">
-                  It may be not all the time. We cannot guarantee the accuracy of our analysis given that some of our data, such as EBITDA and daily outstanding stocks, amongst others, are not directly disclosed in public filings and hence, they need to be estimated by us. Estimated figures like EBITDA may differ from actual ones. However, our estimates use standard formulae and procedures normally used by the financial industry and hence, we are pretty confident of being close to real figures. Finally, it is important to mention that most of the financial information is obtained directly from EDGAR filings and is not estimated.
+                  It may be not all the time. We cannot guarantee the accuracy of our analysis given that some of our data, such as EBITDA, amongst others, are not directly disclosed in public filings and hence, they need to be estimated by us. Estimated figures like EBITDA may differ from actual ones. However, our estimates use standard formulae and procedures normally used by the financial industry. Finally, it is important to mention that most of the financial information is obtained directly from EDGAR filings and is not estimated.
 		</div>
               </div>
             </div>
+
+	    <div class="panel panel-default">
+	      <div class="panel-heading">
+		<a class="panel-group toggle" data-toggle="collapse"
+                   data-parent="#accordion2" href="#collapseTwo">
+                  License
+		</a>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse">
+		<div class="panel-body">
+		  The information provided here is for your own personal use only. You can not display nor share the data with another person/organization.
+		</div>
+              </div>
+            </div>
+
 	    
 	    <div class="panel panel-default">
 	      <div class="panel-heading">
 		<a class="panel-group toggle" data-toggle="collapse"
-                   data-parent="#accordion7" href="#collapseSeven">
-                  Which are the main challenges that you face?
+                   data-parent="#accordion3" href="#collapseThree">
+                  Disclaimer
 		</a>
               </div>
-              <div id="collapseSeven" class="panel-collapse collapse">
+              <div id="collapseThree" class="panel-collapse collapse">
 		<div class="panel-body">
-                  Our main challenge is to parse financial figures from public filings on a massive scale. Although such issues can be solved by purchasing the data from several financial data providers, we build our database with our own proprietary software and algorithms, EBITDA estimates, and other financial data directly from public filings. Parsing text files correctly is hard, especially when all accounting data changes from company to company, and from time to time in the same company. Therefore, yes, we do need to type data from filings and perform strict checks until we fully develop correct parsing algorithms.
+                  By using this site you accept the following important information:
+		  1) No Investment Advice: The data on this website is for your information only. It does not constitute investment advice nor investment recommendation. We are not a registered investment advisor. All investment and financial data expressed here are from personal research and experience of the owners and are intended as educational material.
+		  We only have access to public information about publicly traded companies, and this is not a place for receiving advice concerning investment decisions. We perform financial data research with generic information related to stocks. No content on the site constitutes - or should be understood as constituting - a recommendation to enter in any securities transactions. We do not provide personalized recommendations or views as to whether a stock or investment approach is suited to the financial needs of a specific individual.
+		  The information provided by us should not be used as a substitute for suitable investment and product-related advice. Should you have any doubts about the meaning of the information provided herein, you should contact your financial advisor or any other independent professional advisor.
+		  We are not regulated by any Financial Services Authority.
+		  2) Do your Own Research: Our content is intended to be used and must be used for informational purposes only. It is very important to do your own analysis before making any investment based on your own personal circumstances. You should take independent financial advice from a professional in connection with, or independently research and verify, any information that you find here and wish to rely upon, whether for the purpose of making an investment decision or otherwise.
+		  Although we present investment screens, the results should only be treated as candidates for further research, not as a buy list or set of recommendations. Where we offer valuation multiples, these are solely for informational and educational purposes so that you can start performing your own research. We would like to draw your attention that past performance is not a guide to future performance and therefore, history is just a part of an integral analysis regarding the potential value of a stock.
+		  3) Information: We regularly check and update the data we used in our analysis. Despite due care, however, the data underlying this information may have changed in the period since the last review. We therefore accept no liability and offer no guarantee as to whether the information is up to date, correct or complete. We do not give any assurance that our analysis is without errors. Although best efforts are made to ensure that all information is accurate and up to date, un-intended errors and misprints may occur.
+		  4) No reliance: Accordingly, we will not be liable, whether in contract, tort (including negligence) or otherwise, in respect of any damage, expense or other loss you may suffer arising out of such information or any reliance you may place upon such information.
 		</div>
               </div>
             </div>
+
 	    
-	    <div class="panel panel-default">
-	      <div class="panel-heading">
-		<a class="panel-group toggle" data-toggle="collapse"
-                   data-parent="#accordion8" href="#collapseEight">
-                  Who are you?
-		</a>
-              </div>
-              <div id="collapseEight" class="panel-collapse collapse">
-		<div class="panel-body">
-                  Stockety is being built and maintained by financial investment analysts in its spare time appart from work, who have Finance, Engineering, and Operations Research background. All of the analytical methodology to be applied is a result of more than 15 years of professional experience on investment banking, equity research, and private equity investments, in both emerging and developed markets.
-		</div>
-              </div>
-            </div>
 	    
-	    <div class="panel panel-default">
-	      <div class="panel-heading">
-		<a class="panel-group toggle" data-toggle="collapse"
-                   data-parent="#accordion9" href="#collapseNine">
-                  How can I reach you?
-		</a>
-              </div>
-              <div id="collapseNine" class="panel-collapse collapse">
-		<div class="panel-body">
-		  For feedback and comments, send an email to: admin@stockety.com
-		</div>
-              </div>
-            </div>
-	    
-	    <div class="panel panel-default">
-	      <div class="panel-heading">
-		<a class="panel-group toggle" data-toggle="collapse"
-                   data-parent="#accordion10" href="#collapseTen">
-                  Acknowledgements
-		</a>
-              </div>
-              <div id="collapseTen" class="panel-collapse collapse">
-		<div class="panel-body">
-                  This website would not be possible without the generosity of EDGAR Database for access to filings, YahooFinance for daily prices, and Bootstrap, Glyphicons, d3.js for their projects.
-		</div>
-              </div>
-            </div>
 	  </div>
 	</div>
       </div>

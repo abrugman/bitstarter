@@ -1,133 +1,126 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <script type="text/javascript" src="https://mbostock.github.com/d3/d3.js?2.3.0"></script>
-    <script type="text/javascript" src="https://mbostock.github.com/d3/d3.csv.js?2.3.0"></script>
-    <script type="text/javascript" src="https://mbostock.github.com/d3/d3.layout.js?2.3.0"></script>
-    <script type="text/javascript" src="https://mbostock.github.com/d3/d3.time.js?2.3.0"></script>
-    <style type="text/css">
- 
-svg {
-  font-family: "Helvetica Neue", Helvetica;
-}
- 
-.line {
-  fill: none;
-  stroke: #000;
-  stroke-width: 2px;
-}
- 
-    </style>
-  </head>
-  <body>
-    <script type="text/javascript">
+<meta charset="utf-8">
+<body marginwidth="0" marginheight="0">
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
+  <script>
 
-// 
- 
-var m = [0, 0, 0, 0],
-    w = 302,
-    h = 302;
- 
-var x,
-    y,
-    duration = 500;
+    //Simple animated example of d3-cloud - https://github.com/jasondavies/d3-cloud
+    //Based on https://github.com/jasondavies/d3-cloud/blob/master/examples/simple.html
+    
+    var margin = {top: 20, right: 20, bottom: 20, left: 60};
 
-var color = d3.scale.category10();
- 
-var svg = d3.select("body").append("svg:svg")
-    .attr("width", w)
-    .attr("height", h)
-  .append("svg:g")
+    var wi = screen.width - margin.left - margin.right;
+    var he = screen.height - margin.top - margin.bottom;
+    
+    // Encapsulate the word cloud functionality
+    function wordCloud(selector) {
 
- 
-var stocks, 
-    symbols;
- 
-// A line generator, for the dark stroke.
-var line = d3.svg.line()
-    .interpolate("basis")
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.price); });
- 
-// A line generator, for the dark stroke.
-var axis = d3.svg.line()
-    .interpolate("basis")
-    .x(function(d) { return x(d.date); })
-    .y(h);
- 
-d3.csv("../data/stocks.csv", function(data) {
-  var parse = d3.time.format("%b %Y").parse;
- 
-  // Nest stock values by symbol.
-  symbols = d3.nest()
-      .key(function(d) { return d.symbol; })
-      .entries(stocks = data);
- 
-  // Parse dates and numbers. We assume values are sorted by date.
-  // Also compute the maximum price per symbol, needed for the y-domain.
-  symbols.forEach(function(s) {
-    s.values.forEach(function(d) { d.date = parse(d.date); d.price = +d.price; });
-    s.maxPrice = d3.max(s.values, function(d) { return d.price; });
-    s.sumPrice = d3.sum(s.values, function(d) { return d.price; });
-  });
- 
-  // Sort by maximum price, descending.
-  symbols.sort(function(a, b) { return b.maxPrice - a.maxPrice; });
+	var fill = d3.scale.category20();
 
-  var g = svg.selectAll("g")
-      .data(symbols)
-    .enter().append("svg:g")
-      .attr("class", "symbol");
- 
-  setTimeout(lines, duration);
-
-});
+	//Construct the word cloud's SVG element
+	var svg = d3.select(selector).append("svg")
+            .attr("width", wi)
+            .attr("height", he)
+            .append("g")
+            .attr("transform", "translate(250,250)");
 
 
- 
-function lines() {
-  x = d3.time.scale().range([0, w]);
-  y = d3.scale.linear().range([h / 2 - 20, 0]);
- 
-  // Compute the minimum and maximum date across symbols.
-  x.domain([
-    d3.min(symbols, function(d) { return d.values[0].date; }),
-    d3.max(symbols, function(d) { return d.values[d.values.length - 1].date; })
-  ]);
- 
-  var g = svg.selectAll(".symbol")
-      .attr("transform", function(d, i) { return "translate(0," + (i * h / 4 + 10) + ")"; });
- 
-  g.each(function(d) {
-    var e = d3.select(this);
- 
-    e.append("svg:path")
-        .attr("class", "line");
+	//Draw the word cloud
+	function draw(words) {
+            var cloud = svg.selectAll("g text")
+                .data(words, function(d) { return d.text; })
 
-  });
- 
-  function draw(k) {
-    g.each(function(d) {
-      var e = d3.select(this);
-      y.domain([0, d.maxPrice]);
+            //Entering words
+            cloud.enter()
+		.append("text")
+		.style("font-family", "Impact")
+		.style("fill", function(d, i) { return fill(i); })
+		.attr("text-anchor", "middle")
+		.attr('font-size', 1)
+		.text(function(d) { return d.text; });
 
-      e.select("path")
-          .attr("d", function(d) { return line(d.values.slice(0, k + 1)); });
- 
-    });
-  }
- 
-  var k = 1, n = symbols[0].values.length;
+            //Entering and existing words
+            cloud
+		.transition()
+                .duration(800)
+                .style("font-size", function(d) { return d.size + "px"; })
+                .attr("transform", function(d) {
+                    return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                })
+                .style("fill-opacity", 1);
 
-  d3.timer(function() {
-    draw(k);
-    if ((k += 1) >= n - 1) {
-      draw(n - 1);
-      return true;
+            //Exiting words
+            cloud.exit()
+		.transition()
+                .duration(400)
+                .style('fill-opacity', 1e-6)
+                .attr('font-size', 1)
+                .remove();
+	}
+
+
+	//Use the module pattern to encapsulate the visualisation code. We'll
+	// expose only the parts that need to be public.
+	return {
+
+            //Recompute the word cloud for a new set of words. This method will
+            // asycnhronously call draw when the layout has been computed.
+            //The outside world will need to call this function, so make it part
+            // of the wordCloud return value.
+            update: function(words) {
+
+		wi = screen.width - margin.left - margin.right;
+		he = screen.height - margin.top - margin.bottom;
+
+		d3.layout.cloud().size([375, 375])
+                    .words(words)
+                    .padding(5)
+                    .rotate(function() { return ~~(Math.random() * 2) * 90; })
+                    .font("Impact")
+                    .fontSize(function(d) { return d.size; })
+                    .on("end", draw)
+                    .start();
+            }
+	}
+
     }
-  });
-}
 
-    </script>
-  </body>
-</html>
+    //Some sample data - http://en.wikiquote.org/wiki/Opening_lines
+    var words = [
+	"CVX MSFT IBM HD CSCO AAPL JNJ AMZN MMM VZ MRK XOM NKE MCD CLX INTC PII KO WMT AXP PFE GE PG BA CAT UNH TRV AMGN WBA HON CRM",
+	"CVX MSFT IBM HD CSCO AAPL JNJ AMZN MMM VZ MRK XOM NKE MCD CLX INTC PII KO WMT AXP PFE GE PG BA CAT UNH TRV AMGN WBA HON CRM",
+	"CVX MSFT IBM HD CSCO AAPL JNJ AMZN MMM VZ MRK XOM NKE MCD CLX INTC PII KO WMT AXP PFE GE PG BA CAT UNH TRV AMGN WBA HON CRM",
+	"CVX MSFT IBM HD CSCO AAPL JNJ AMZN MMM VZ MRK XOM NKE MCD CLX INTC PII KO WMT AXP PFE GE PG BA CAT UNH TRV AMGN WBA HON CRM"
+    ]
+
+    //Prepare one of the sample sentences by removing punctuation,
+    // creating an array of words and computing a random size attribute.
+    function getWords(i) {
+	return words[i]
+            .replace(/[!\.,:;\?]/g, '')
+            .split(' ')
+            .map(function(d) {
+                return {text: d, size: 10 + Math.random() * 60};
+            })
+    }
+
+    //This method tells the word cloud to redraw with a new set of words.
+    //In reality the new words would probably come from a server request,
+    // user input or some other source.
+    function showNewWords(vis, i) {
+	i = i || 0;
+
+	vis.update(getWords(i ++ % words.length))
+	setTimeout(function() { showNewWords(vis, i + 1)}, 2000)
+    }
+
+    //Create a new instance of the word cloud visualisation.
+    var myWordCloud = wordCloud('body');
+
+    //Start cycling through the demo data
+    showNewWords(myWordCloud);
+
+
+  </script>
+</body>

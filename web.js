@@ -67,6 +67,18 @@ var pbvk = "display.html";
 app.get('/dataquery', 
 	function(req, res, next) {
 
+	    //a11n borrar archivos ./data/ para no mezclar titulos 
+	    fs.writeFile('./data/nombre.json', '', function(){console.log('Done empty ./data/nombre.json')});
+	    fs.writeFile('./data/precio.json', '', function(){console.log('Done empty ./data/precio.json')});
+	    fs.writeFile('./data/trim.json', '', function(){console.log('Done empty ./data/trim.json')});
+	    fs.writeFile('./data/anno.json', '', function(){console.log('Done empty ./data/anno.json')});
+	    fs.writeFile('./data/l_date.json', '', function(){console.log('Done empty ./data/l_date.json')});
+	    var nom;
+	    var prec;
+	    var quart;
+	    var anio;
+	    var lastdate;
+	    
 	    var cc = req.query.c;
 	    console.log ('cc : ' + cc);
 	    var include = codes.includes(cc);
@@ -194,7 +206,7 @@ app.get('/dataquery',
 
 	    /* serves .data/nombre.json file that has name of companyto be shown in display.html */
 
-	    var nom = "./data/nombre.json";
+	    nom = "./data/nombre.json";
 	    app.get('/nomb', function(req, res){
 		console.log ('Datos de nombre han sido servidos.');
 		res.send(fs.readFileSync(nom).toString());
@@ -202,7 +214,7 @@ app.get('/dataquery',
 
 	    /* serves .data/precio.json file that has the last price used to calculate data to be shown in display.html */
 
-	    var prec = "./data/precio.json";
+	    prec = "./data/precio.json";
 	    app.get('/precio', function(req, res){
 		console.log ('Datos de precio han sido servidos.');
 		res.send(fs.readFileSync(prec).toString());
@@ -210,7 +222,7 @@ app.get('/dataquery',
 
 	    /* serves .data/l_date.json file that has the last date used to calculate data to be shown in display.html */
 
-	    var lastdate = "./data/l_date.json";
+	    lastdate = "./data/l_date.json";
 	    app.get('/ldate', function(req, res){
 		console.log ('Datos de lastDate han sido servidos.');
 		res.send(fs.readFileSync(lastdate).toString());
@@ -218,7 +230,7 @@ app.get('/dataquery',
 
 	    /* serves .data/anno.json file that has the last year used to calculate data to be shown in display.html */
 
-	    var anio = "./data/anno.json";
+	    anio = "./data/anno.json";
 	    app.get('/an', function(req, res){
 		console.log ('Datos de anno han sido servidos.');
 		res.send(fs.readFileSync(anio).toString());
@@ -226,7 +238,7 @@ app.get('/dataquery',
 
 	    /* serves .data/trim.json file that has the last quarter used to calculate data to be shown in display.html */
 
-	    var quart = "./data/trim.json";
+	    quart = "./data/trim.json";
 	    app.get('/tri', function(req, res){
 		console.log ('Datos de trimestre han sido servidos.');
 		res.send(fs.readFileSync(quart).toString());

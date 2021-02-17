@@ -73,11 +73,6 @@ app.get('/dataquery',
 	    fs.writeFile('./data/trim.json', '', function(){console.log('Done empty ./data/trim.json')});
 	    fs.writeFile('./data/anno.json', '', function(){console.log('Done empty ./data/anno.json')});
 	    fs.writeFile('./data/l_date.json', '', function(){console.log('Done empty ./data/l_date.json')});
-	    var nom;
-	    var prec;
-	    var quart;
-	    var anio;
-	    var lastdate;
 	    
 	    var cc = req.query.c;
 	    console.log ('cc : ' + cc);
@@ -113,6 +108,15 @@ app.get('/dataquery',
 	   with pbv information in json format from newly created file pbv.json*/
 
 	function(req, res, next) {
+
+	    /* inicializa variables de titulos para luego completarlas */ 
+	    var nom;
+	    var prec;
+	    var quart;
+	    var anio;
+	    var lastdate;
+
+	    
 	    console.log ('Middleware de display.html ejecutado.');
 	    res.send(fs.readFileSync(pbvk).toString()); // NO SERIA MEJOR HACER UN REDIRECT A /pbvg no carga la primera vez en chrome con el request, solo con un reload...
 

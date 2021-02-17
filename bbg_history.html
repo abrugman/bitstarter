@@ -27,7 +27,14 @@
   <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
   <script>
 
-    var margin = {top: 20, right: 20, bottom: 20, left: 60},
+    var atop = screen.width*0.04;
+    var arig = screen.width*0.04;
+    var abot = screen.width*0.08;
+    var alef = screen.width*0.18;
+    
+
+
+    var margin = {top: atop, right: arig, bottom: abot, left: alef},
 	width = screen.width - margin.left - margin.right,
 	height = (screen.width/2) - margin.top - margin.bottom;
 
@@ -146,9 +153,12 @@
 	    .attr("class", "y axis")
 	    .call(yAxis);
 
+	var atrans = -0.2*screen.width;
+	
 	// Add the text label for theY Axis
 	svg.append("text")
-	    .attr("transform", "rotate(-90, -66, 0) translate(-125)")
+	    //.attr("transform", "rotate(-90, -66, 0) translate(-125)")
+	    .attr("transform", "rotate(-90, -66, 0) translate(" + atrans + ")")
 	    .attr("y", 6)
 	    .attr("dy", ".71em")
 	    .style("text-anchor", "end")

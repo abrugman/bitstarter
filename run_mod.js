@@ -15,19 +15,19 @@ module.exports = function (tick, callback) {
     //connection.connect();
     connection.connect(function(error){
 	if(error){
-            console.log("run_mod.js: Couldn't connect :(    Error: " + error);
+            console.log("RUN_MOD.JS --> Couldn't connect :(    Error: " + error);
 	} else {
-            console.log("run_mod.js: Connected successfully~!");
+            console.log("RUN_MOD.JS --> Connected successfully~!");
 	}    
     });
 
     
-    console.log('ARRAY = ' + tick);
+    console.log('RUN_MOD.JS --> ARRAY = ' + tick);
     // PARA PREVENIR INJECTIONS HACER UNA PRUEBA QUE EL TICK.LENGTH ES MENOR A SIETE Y EN UN FUTURO QUE DATES ES IGUAL A DIEZ????
 
     // For Security
     var user_input = tick[0];
-    console.log('ticker es: ' + user_input);
+    console.log('RUN_MOD.JS --> ticker es: ' + user_input);
     
  //   var sql = 'CALL process_data(' + connection.escape(user_input) + ', "2011-06-01", "2013-08-20")';
 // cambio abril 2014 ponr anterior y borrar siguiente en caso de danno ademas como poner today
@@ -75,7 +75,7 @@ module.exports = function (tick, callback) {
 	if (err) throw err;
 	fs.writeFile('./data/evrevenue.json', JSON.stringify(rows), function (err) {if (err) throw err;});
 	er = JSON.stringify(rows);
-	console.log('El archivo evrevenue.json ha sido generado y los datos han sido guardados en una variable');
+	console.log('RUN_MOD.JS --> El archivo evrevenue.json ha sido generado y los datos han sido guardados en una variable');
 //	callback(pe);
     });
 
@@ -87,7 +87,7 @@ module.exports = function (tick, callback) {
 	if (err) throw err;
 	fs.writeFile('./data/evebitda.json', JSON.stringify(rows), function (err) {if (err) throw err;});
 	eb = JSON.stringify(rows);
-	console.log('El archivo evebitda.json ha sido generado y los datos han sido guardados en una variable');
+	console.log('RUN_MOD.JS --> El archivo evebitda.json ha sido generado y los datos han sido guardados en una variable');
 //	callback(pe);
     });
 
@@ -100,7 +100,7 @@ module.exports = function (tick, callback) {
 	if (err) throw err;
 	fs.writeFile('./data/pe.json', JSON.stringify(rows), function (err) {if (err) throw err;});
 	pe = JSON.stringify(rows);
-	console.log('El archivo pe.json ha sido generado y los datos han sido guardados en una variable');
+	console.log('RUN_MOD.JS --> El archivo pe.json ha sido generado y los datos han sido guardados en una variable');
 //	callback(pe);
     });
 
@@ -113,7 +113,7 @@ module.exports = function (tick, callback) {
 	if (err) throw err;
 	fs.writeFile('./data/pbv.json', JSON.stringify(rows), function (err) {if (err) throw err;});
 	pb = JSON.stringify(rows);
-	console.log('El archivo pbv.json ha sido generado y los datos han sido guardados en una variable');
+	console.log('RUN_MOD.JS --> El archivo pbv.json ha sido generado y los datos han sido guardados en una variable');
 	callback(pb);
     });
 
@@ -127,7 +127,7 @@ module.exports = function (tick, callback) {
 	if (err) throw err;
 	fs.writeFile('./data/bbg.json', JSON.stringify(rows), function (err) {if (err) throw err;});
 	bb = JSON.stringify(rows);
-	console.log('El archivo bbg.json ha sido generado y los datos han sido guardados en una variable');
+	console.log('RUN_MOD.JS --> El archivo bbg.json ha sido generado y los datos han sido guardados en una variable');
 //	callback(pe);
     });
 
@@ -141,7 +141,7 @@ module.exports = function (tick, callback) {
 	if (err) throw err;
 	fs.writeFile('./data/goodassets.json', JSON.stringify(rows), function (err) {if (err) throw err;});
 	ga = JSON.stringify(rows);
-	console.log('El archivo goodassets.json ha sido generado y los datos han sido guardados en una variable');
+	console.log('RUN_MOD.JS --> El archivo goodassets.json ha sido generado y los datos han sido guardados en una variable');
 //	callback(pe);
     });
 
@@ -154,7 +154,7 @@ module.exports = function (tick, callback) {
 	if (err) throw err;
 	fs.writeFile('./data/equity.json', JSON.stringify(rows), function (err) {if (err) throw err;});
 	eq = JSON.stringify(rows);
-	console.log('El archivo equity.json ha sido generado y los datos han sido guardados en una variable');
+	console.log('RUN_MOD.JS --> El archivo equity.json ha sido generado y los datos han sido guardados en una variable');
 //	callback(pe);
     });
     
@@ -167,7 +167,7 @@ module.exports = function (tick, callback) {
 	if (err) throw err;
 	fs.writeFile('./data/divs.json', JSON.stringify(rows), function (err) {if (err) throw err;});
 	di = JSON.stringify(rows);
-	console.log('El archivo divs.json ha sido generado y los datos han sido guardados en una variable');
+	console.log('RUN_MOD.JS --> El archivo divs.json ha sido generado y los datos han sido guardados en una variable');
 //	callback(pe);
     });
 
@@ -179,7 +179,7 @@ module.exports = function (tick, callback) {
 	if (err) throw err;
 	fs.writeFile('./data/accumdivs.json', JSON.stringify(rows), function (err) {if (err) throw err;});
 	da = JSON.stringify(rows);
-	console.log('El archivo accumdivs.json ha sido generado y los datos han sido guardados en una variable');
+	console.log('RUN_MOD.JS --> El archivo accumdivs.json ha sido generado y los datos han sido guardados en una variable');
 //	callback(pe);
     });
 
@@ -192,7 +192,7 @@ module.exports = function (tick, callback) {
 	if (err) throw err;
 	fs.writeFile('./data/eqdivs.json', JSON.stringify(rows), function (err) {if (err) throw err;});
 	ed = JSON.stringify(rows);
-	console.log('El archivo eqdivs.json ha sido generado y los datos han sido guardados en una variable');
+	console.log('RUN_MOD.JS --> El archivo eqdivs.json ha sido generado y los datos han sido guardados en una variable');
 //	callback(pe);
     });
 
@@ -206,7 +206,7 @@ module.exports = function (tick, callback) {
 	if (err) throw err;
 	fs.writeFile('./data/nombre.json', JSON.stringify(rows), function (err) {if (err) throw err;});
 	nombre = JSON.stringify(rows);
-	console.log('El archivo nombre.json ha sido generado y los datos han sido guardados en una variable');
+	console.log('RUN_MOD.JS --> El archivo nombre.json ha sido generado y los datos han sido guardados en una variable');
 //	callback(pe);
     });
 
@@ -222,7 +222,7 @@ module.exports = function (tick, callback) {
 	if (err) throw err;
 	fs.writeFile('./data/precio.json', JSON.stringify(rows), function (err) {if (err) throw err;});
 	precio = JSON.stringify(rows);
-	console.log('El archivo precio.json ha sido generado y los datos han sido guardados en una variable');
+	console.log('RUN_MOD.JS --> El archivo precio.json ha sido generado y los datos han sido guardados en una variable');
     });
 
 
@@ -235,7 +235,7 @@ module.exports = function (tick, callback) {
 	if (err) throw err;
 	fs.writeFile('./data/l_date.json', JSON.stringify(rows), function (err) {if (err) throw err;});
 	l_date = JSON.stringify(rows);
-	console.log('El archivo l_date.json ha sido generado y los datos han sido guardados en una variable');
+	console.log('RUN_MOD.JS --> El archivo l_date.json ha sido generado y los datos han sido guardados en una variable');
     });
 
 
@@ -252,8 +252,8 @@ module.exports = function (tick, callback) {
 	if (err) throw err;
 	var trim = results[0];
 	var anno = results[1];
-	console.log('trim = ' + trim);
-	console.log('anno = ' + anno);
+	console.log('RUN_MOD.JS --> trim = ' + trim);
+	console.log('RUN_MOD.JS --> anno = ' + anno);
 	fs.writeFile('./data/trim.json', JSON.stringify(results[0]), function (err) {if (err) throw err;});
 	fs.writeFile('./data/anno.json', JSON.stringify(results[1]), function (err) {if (err) throw err;});
     });

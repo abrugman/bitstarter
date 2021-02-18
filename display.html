@@ -52,8 +52,12 @@
     </nav>
 
 
-    <!-- toolbar -->
-
+    <!-- titles -->
+    <div class="row">
+      <div class="col-md-3">
+        <p id="ticker"></p>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-3">
         <p id="empresa"></p>
@@ -112,6 +116,12 @@
 	  $('#pbvbi').attr('src', '/goodasset');
       });
 
+      var too = [];
+      $.get('/tick', function(data) {
+	  too = data;
+	  $('#ticker').text(too); 
+      });
+      
       var foo = [];
       $.getJSON('/nomb', function(data) {
 	  foo = data;

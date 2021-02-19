@@ -210,7 +210,40 @@ app.get('/dataquery',
 		res.send(fs.readFileSync(datadivs).toString());
 	    });
 
+	    /* serves .data/margin_ebitda.json file that is requested in ebitda_margin.html iframe en display.html */
 
+	    var datamargin = "./data/margin_ebitda.json";
+	    app.get('/datamar', function(req, res){
+		console.log ('WEB.JS --> Datos de margenes han sido servidos.');
+		res.send(fs.readFileSync(datamargin).toString());
+	    });
+
+	    /* serves .data/margin_net.json file that is requested in net_margin.html iframe en display.html */
+
+	    var datamargindo = "./data/margin_net.json";
+	    app.get('/datamarnet', function(req, res){
+		console.log ('WEB.JS --> Datos de margenes han sido servidos.');
+		res.send(fs.readFileSync(datamargindo).toString());
+	    });
+
+	    /* serves .data/shares_out.json file that is requested in shares_out.html iframe en display.html */
+
+	    var datash = "./data/shares_out.json";
+	    app.get('/datashares', function(req, res){
+		console.log ('WEB.JS --> Datos de shares coomon outstanding han sido servidos.');
+		res.send(fs.readFileSync(datash).toString());
+	    });
+
+	    /* serves .data/unit_shares_out.json file that is requested in shares_out.html iframe en display.html */
+
+	    var datashun = "./data/unit_shares_out.json";
+	    app.get('/dataunitshares', function(req, res){
+		console.log ('WEB.JS --> Datos de unit shares common outstanding han sido servidos.');
+		res.send(fs.readFileSync(datashun).toString());
+	    });
+
+
+	    
 
 	    /* serves .data/nombre.json file that has name of companyto be shown in display.html */
 
@@ -253,7 +286,13 @@ app.get('/dataquery',
 		res.send(fs.readFileSync(quart).toString());
 	    });
 
+	    
 
+	    /* ----------------------------------------------------------------------------------------------------------- */
+	    /* ----------------------------------------------------------------------------------------------------------- */
+	    /* ----------------------------------------------------------------------------------------------------------- */
+	    /* ----------------------------------------------------------------------------------------------------------- */
+	    
 
 
 	    /* Multiple Charts */
@@ -345,7 +384,28 @@ app.get('/dataquery',
 		res.send(fs.readFileSync(divs).toString());
 	    });
 
+	    var mars = "margen_ebitda.html";
+	    app.get('/mars', function(req, res){
+		console.log ('WEB.JS --> Grafico de margen_ebitda ha sido llamado.');
+		res.send(fs.readFileSync(mars).toString());
+	    });
 
+	    var marso = "margen_neto.html";
+	    app.get('/marso', function(req, res){
+		console.log ('WEB.JS --> Grafico de margen_neto ha sido llamado.');
+		res.send(fs.readFileSync(marso).toString());
+	    });
+
+	    var sho = "shares_out.html";
+	    app.get('/sho', function(req, res){
+		console.log ('WEB.JS --> Grafico de shares_outstanding ha sido llamado.');
+		res.send(fs.readFileSync(sho).toString());
+	    });
+
+
+
+
+	    
 	    /* building blocks history charts */
 
 	    var bbga_history = "bbg_history.html";
@@ -354,7 +414,11 @@ app.get('/dataquery',
 		res.send(fs.readFileSync(bbga_history).toString());
 	    });
 
-	    /* res.end(); */
+
+
+
+	    
+	    /* todo: pobar si debemios poner res.end(); */
 	    
 	}
        );

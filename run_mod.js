@@ -196,6 +196,59 @@ module.exports = function (tick, callback) {
 //	callback(pe);
     });
 
+    // obtiene la informacion de MARGEN EBITDA y la guarda en archivo margin_ebitda.json en directorio ./data/ 
+
+    var ma = [];  
+
+    connection.query('SELECT DATE_FORMAT(date, "%m/%d/%y") AS "date", ebitda_margin FROM margins', function(err, rows) {
+	if (err) throw err;
+	fs.writeFile('./data/margin_ebitda.json', JSON.stringify(rows), function (err) {if (err) throw err;});
+	ma = JSON.stringify(rows);
+	console.log('RUN_MOD.JS --> El archivo margin_ebitda.json ha sido generado y los datos han sido guardados en una variable');
+	//	callback(pe);
+    });
+
+
+    // obtiene la informacion de MARGEN NETO y la guarda en archivo margin_net.json en directorio ./data/ 
+
+    var mn = [];  
+
+    connection.query('SELECT DATE_FORMAT(date, "%m/%d/%y") AS "date", net_margin FROM margins', function(err, rows) {
+	if (err) throw err;
+	fs.writeFile('./data/margin_net.json', JSON.stringify(rows), function (err) {if (err) throw err;});
+	mn = JSON.stringify(rows);
+	console.log('RUN_MOD.JS --> El archivo margin_net.json ha sido generado y los datos han sido guardados en una variable');
+	//	callback(pe);
+    });
+
+    // obtiene la informacion de SHARES OUTSTANDING y la guarda en archivo shares_out.json en directorio ./data/ 
+
+    var sh = [];  
+
+    connection.query('SELECT DATE_FORMAT(date, "%m/%d/%y") AS "date", common FROM shares', function(err, rows) {
+	if (err) throw err;
+	fs.writeFile('./data/shares_out.json', JSON.stringify(rows), function (err) {if (err) throw err;});
+	sh = JSON.stringify(rows);
+	console.log('RUN_MOD.JS --> El archivo shares_out.json ha sido generado y los datos han sido guardados en una variable');
+	//	callback(pe);
+    });
+
+        // obtiene la informacion de UNIT SHARES OUTSTANDING y la guarda en archivo unit_shares_out.json en directorio ./data/ 
+
+    var ush = [];  
+
+    connection.query('SELECT DATE_FORMAT(date, "%m/%d/%y") AS "date", unit_common FROM unit_shares', function(err, rows) {
+	if (err) throw err;
+	fs.writeFile('./data/unit_shares_out.json', JSON.stringify(rows), function (err) {if (err) throw err;});
+	ush = JSON.stringify(rows);
+	console.log('RUN_MOD.JS --> El archivo unit_shares_out.json ha sido generado y los datos han sido guardados en una variable');
+	//	callback(pe);
+    });
+
+    
+
+
+
     
     // obtiene el nombre de la empresa consultada y lo guarda en archivo nombre.json en directorio ./data/ fecha mayo 23 2014 
 

@@ -53,11 +53,7 @@
 
 
     <!-- titles -->
-    <div class="row">
-      <div class="col-md-3">
-        <p id="ticker"></p>
-      </div>
-    </div>
+
     <div class="row">
       <div class="col-md-3">
         <p id="empresa"></p>
@@ -72,32 +68,57 @@
 	<p id="lastdate"></p>
       </div>
       <div class="col-md-2">
+        <p id="ticker"></p>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+	<div class="btn-group btn-group-xs" role="group" aria-label="...">
+	  <button id="uno" type="button" class="btn btn-default" autofocus="autofocus">Financials</button>
+	  <button id="dos" type="button" class="btn btn-default">Shares</button>
+	  <button id="tres" type="button" class="btn btn-default">Dividends</button>
+	  <button id="cuatro" type="button" class="btn btn-default">Multiples</button>
+	  <button id="cinco" type="button" class="btn btn-default">Market</button>
+	</div>
+      </div>
+    </div>
+
+    <!--
+    <div class="row">
+      <div class="col-md-12">
 	<div class="btn-group">
 	  <button id="uno" type="button" class="btn btn-default" onclick="console.log('boton uno');" autofocus="autofocus"><span class="glyphicon glyphicon-adjust"></span></button>
 	  <button id="dos" type="button" class="btn btn-default" onclick="console.log('boton dos');"><span class="glyphicon glyphicon-asterisk"></span></button>
 	  <button id="tres" type="button" class="btn btn-default" onclick="console.log('boton tres');"><span class="glyphicon glyphicon-remove-circle"></span></button>
 	  <button id="cuatro" type="button" class="btn btn-default" onclick="console.log('boton cuatro');"><span class="glyphicon glyphicon-retweet"></span></button>
+	  <button id="cinco" type="button" class="btn btn-default" onclick="console.log('boton cinco');"><span class="glyphicon glyphicon-star"></span></button>
 	</div>      
       </div>
     </div>
+-->
 
+
+    
 
     <script type="text/javascript">
 
       $('#uno').click(function() {
 	  console.log("You clicked on the first button.");
-	  $('#building').attr('src', '/evrev');
-	  $('#evebi').attr('src', '/eve');
-	  $('#exam').attr('src', '/peg');
-	  $('#pbvbi').attr('src', '/pbvg');
+	  $('#building').attr('src', '/ebitda');
+	  $('#evebi').attr('src', '/goodasset');
+	  $('#exam').attr('src', '/equity');
+	  $('#pbvbi').attr('src', '/mars');
+	  $('#quinto').attr('src', '/marso');
       });
 
       $('#dos').click(function() {
 	  console.log("You clicked on the second button.");
-	  $('#building').attr('src', '/ev');
-	  $('#evebi').attr('src', '/mktcap');
-	  $('#exam').attr('src', '/capnd');
-	  $('#pbvbi').attr('src', '/ebitda');
+	  $('#building').attr('src', '/sho');
+	  $('#evebi').attr('src', '');
+	  $('#exam').attr('src', '');
+	  $('#pbvbi').attr('src', '');
+	  $('#quinto').attr('src', '');
       });
 
       $('#tres').click(function() {
@@ -106,15 +127,27 @@
 	  $('#evebi').attr('src', '/divsaccum');
 	  $('#exam').attr('src', '/equity');
 	  $('#pbvbi').attr('src', '/eqacdiv');
+	  $('#quinto').attr('src', '');
       });
 
       $('#cuatro').click(function() {
 	  console.log("You clicked on the fourth button.");
-	  $('#building').attr('src', '/bbg_history');
-	  $('#evebi').attr('src', '/bbg');
-	  $('#exam').attr('src', '/ebitda');
-	  $('#pbvbi').attr('src', '/goodasset');
+	  $('#building').attr('src', '/evrev');
+	  $('#evebi').attr('src', '/eve');
+	  $('#exam').attr('src', '/peg');
+	  $('#pbvbi').attr('src', '/pbvg');
+	  $('#quinto').attr('src', '');
       });
+
+      $('#cinco').click(function() {
+	  console.log("You clicked on the fifth button.");
+	  $('#building').attr('src', '/bbg');
+	  $('#evebi').attr('src', '/bbg_history');
+	  $('#exam').attr('src', '/ev');
+	  $('#pbvbi').attr('src', '/mktcap');
+	  $('#quinto').attr('src', '/capnd');
+      });
+      
 
       var too = [];
       $.get('/tick', function(data) {
@@ -191,16 +224,19 @@
     <!-- four charts -->
     <!-- <div class="img-responsive"> width="500" height="250" -->
       <div class="graficos-container">
-	<iframe id="building" src="/evrev" frameborder="no" scrolling="no" class="grafico"></iframe>
+	<iframe id="building" src="/ebitda" frameborder="no" scrolling="no" class="grafico"></iframe>
       </div>
       <div class="graficos-container">
-	<iframe id="evebi" src="/eve" frameborder="no" scrolling="no" class="grafico"></iframe> 
+	<iframe id="evebi" src="/goodasset" frameborder="no" scrolling="no" class="grafico"></iframe> 
       </div>
       <div class="graficos-container">
-	<iframe id="exam" src="/peg" frameborder="no" scrolling="no" class="grafico"></iframe>
+	<iframe id="exam" src="/equity" frameborder="no" scrolling="no" class="grafico"></iframe>
       </div>
       <div class="graficos-container">
-	<iframe id="pbvbi" src="/pbvg" frameborder="no" scrolling="no" class="grafico"></iframe>
+	<iframe id="pbvbi" src="/mars" frameborder="no" scrolling="no" class="grafico"></iframe>
+      </div>
+      <div class="graficos-container">
+	<iframe id="quinto" src="/marso" frameborder="no" scrolling="no" class="grafico"></iframe>
       </div>
 
 

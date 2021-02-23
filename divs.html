@@ -61,8 +61,8 @@
 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     d3.json("/datadiv", function(error, data) {
-	console.log("Desde divs.html");
-	console.log(data);
+	//console.log("Desde divs.html");
+	//console.log(data);
 
 	data.forEach(function(d) {
 	    d.date = parseDate(d.date);

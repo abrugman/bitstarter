@@ -76,7 +76,7 @@
 	data.forEach(function(v){ delete v.ebitda12m });
 	data.forEach(function(v){ delete v.multiple });
 	var datamod = data;
-	console.log(datamod);
+	//console.log(datamod);
 
 	color.domain(d3.keys(datamod[0]).filter(function(key) { return key !== "date"; }));
 

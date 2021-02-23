@@ -225,7 +225,7 @@ module.exports = function (tick, callback) {
 
     var sh = [];  
 
-    connection.query('SELECT DATE_FORMAT(date, "%m/%d/%y") AS "date", common FROM shares', function(err, rows) {
+    connection.query('SELECT DATE_FORMAT(date, "%m/%d/%y") AS "date", common, unit_common FROM shares', function(err, rows) {
 	if (err) throw err;
 	fs.writeFile('./data/shares_out.json', JSON.stringify(rows), function (err) {if (err) throw err;});
 	sh = JSON.stringify(rows);

@@ -59,31 +59,15 @@
 	.append("g")
 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    var unit_sh;
     
-    d3.json("/dataunitshares", function(error, data) {
-	//console.log("Buscando unidades Desde shares_out.html")
+    d3.json("/datashares", function(error, data) {
+	//console.log("Buscando valores Desde shares_out.html")
 	//console.log(data);
 
 	data.forEach(function(d) {
 	    d.date = parseDate(d.date);
 	    d.common = +d.common;
-	});
-	console.log("data antes de sacar unidades en shares_out.html")
-	console.log(data);
-	unit_sh = data[0].unit_common;
-	console.log("valor de unit_sh")
-	console.log(unit_sh);
-	
-    });
-    
-    d3.json("/datashares", function(error, data) {
-	console.log("Buscando valores Desde shares_out.html")
-	console.log(data);
-
-	data.forEach(function(d) {
-	    d.date = parseDate(d.date);
-	    d.common = +d.common;
+	    d.unit_common = d.unit_common;
 	});
 
 	var yy = Math.min( 0 , d3.min(data, function(v) { return v.common; }) );
@@ -102,6 +86,10 @@
 	    .call(xAxis);
 
 	var atrans = -0.2*screen.width;
+
+	var unit_shares = data[0].unit_common;
+	//console.log("2. valor de unit_shares ------>")
+	//console.log(unit_shares);
 	
 	svg.append("g")
 	    .attr("class", "y axis")
@@ -112,7 +100,7 @@
 	    .attr("y", 6)
 	    .attr("dy", ".71em")
 	    .style("text-anchor", "end")
-	    .text("Shares Outstanding (" + unit_sh + " )");
+	    .text("Shares Outstanding (" + unit_shares + " )");
     });
 
   </script>
